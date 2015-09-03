@@ -10,9 +10,9 @@ int n;
 long long int primo[MAX], a[MAX], v[MAX];
 
 void crivo () {
-    for (int i = 2; i <= MAX; i++)
+    for (int i = 2; i < MAX; i++) 
         if (primo[i] != 0)
-            for (int j = 2; j*i <= MAX; j++) 
+            for (int j = 2; j*i < MAX; j++) 
                 primo [i*j] = 0;
 }
 
@@ -21,20 +21,18 @@ int main () {
     for (int i = 0; i < n; i++) 
         cin >> v[i];
 
-    for (int i = 2; i <= MAX; i++)
-        primo[i] = 1;
+    for (int i = 2; i < MAX; i++)
+        primo[i] = i;
 
     crivo ();    
     int j = 0;
-    for (int i = 2; i <= MAX; i++)
+
+    for (int i = 2; i < MAX; i++)
         if (primo[i] != 0)
-           a[j++] = (long long) i*i;
+            a[j++] = (long long) primo[i]*primo[i];
 
     for (int i = 0; i < n; i++) {
-        if (binary_search (a, a + j, v[i])) 
-            cout << "YES\n";
-        else 
-            cout << "NO\n";   
+        if (binary_search (a, a + j, v[i])) cout << "YES" << endl;
+        else cout << "NO" << endl;   
     }
-    return 0;
 }
