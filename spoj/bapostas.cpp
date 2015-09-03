@@ -13,7 +13,7 @@ void kadane () {
         max_atual = max_atual + v[i];
         if (max_atual < 0) {
             max_atual = 0; 
-            x_temp += 1;
+            x_temp = i + 1;
         }
         if (max_atual > max_total) {
             max_total = max_atual;
