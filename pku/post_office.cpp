@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int v, p, vil[MAX], memo[MAX][35], m[MAX][MAX];
+int v, p, vil[MAX], memo[MAX][35], m[MAX][MAX], posto[MAX];
 
 int pd2 (int x, int y) {
     if (m[x][y] != -1) return m[x][y];
@@ -32,6 +32,20 @@ int pd (int i, int post) {
         ans = min (ans, sum + pd (k, post - 1));
     }
     return memo[i][post] = ans;
+}
+
+void pd3 (int i, int k) {
+    if (k == 0) return;
+    int mini = INT_MAX, tmp, ind; 
+    for (int j = i; j < v; j++) {
+        tmp = min (mini, pd (j, k - 1);
+        if (tmp < mini) {
+            ind = j;
+            mini = tmp;
+        }
+    }
+    posto[ind] = 1;
+    pd3 (ind, k - 1);
 }
 
 int main () {
