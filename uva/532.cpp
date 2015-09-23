@@ -71,7 +71,7 @@ int main () {
                     }
                     else if (d == '.')
                         m[j][k][i] = INT_MAX;
-                    else if (c == '#')
+                    else if (d == '#')
                         m[j][k][i] = -1;                    
                 }
             }
