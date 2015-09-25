@@ -24,16 +24,17 @@ int main () {
         scanf ("%d %d", &n, &u);
         for (int i = 0; i <= n; i++)
             bit[i] = 0;
-        for (int j = 1; j <= u; j++) {
+        for (int j = 0; j < u; j++) {
             scanf ("%d %d %d", &l, &r, &val);
-            update (l + 1, val);
+            l++,r++;
+            update (l, val);
             update (r + 1, -val);
         }
         scanf ("%d", &q);
         for (int i = 0; i < q; i++) {
             scanf ("%d", &idx);
-            printf ("idx %d\n", idx);
-            printf ("%d\n", query (idx + 1) - query(idx));
+            idx++;
+            printf ("%d\n", query (idx) - query(idx-1));
         }   
     }
 
