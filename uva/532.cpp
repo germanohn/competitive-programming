@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-using namespace std;
+iiusing namespace std;
 
 int l, r, c, cont, m[32][32][32];
 int iniL, iniR, iniC;
