@@ -13,7 +13,9 @@ void query (int ind) {
     return sum;
 }
 
-int update (int ini, int fim, int val
+int update (int idx, int val) {
+    
+}
 
 int main () {
     scanf ("%d", &t);
