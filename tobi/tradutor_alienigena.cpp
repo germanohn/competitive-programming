@@ -1,47 +1,61 @@
 #include <bits/stdc++.h>
 #define MAX 100005
+#define MOD 1000000007
 
 using namespace std;
 
-char c[105], n[MAX];
-long long int memo[MAX], tam;
+char maior[MAX], seq[MAX];
+int memo[MAX], M, S;
 
-bool ordena (int i, int j) {
-    if (j - i + 1 < tam) return true;
-    else if (j - i + 1 > tam) return false;
+/*bool ordena (int i, int j) {
+    if (j - i + 1 < M) return true;//se for menor que limitante M
+    
+    else if (j - i + 1 > M) return false;//se for maior que o limitante M
 
-    while (i <= j && n[i] == c[i]) 
+    while (i <= j && maior[i] == seq[i]) 
         i++;
     if (i > j) return true;
-    if (n[i] < c[i]) return true;
+    if (seq[i] < maior[i]) return true;
     return false;
+    if (strncmp (seq + j, maior, M) > 0)
+        return false;
+    return true;
+    
+}*/
+
+int pd (int i) {
+    if (seq[i] == '\0') return 1;
+    
+    if (seq[i] == '0') return 0;
+    
+    int &m = memo[i], tot = 0;
+    if (m != -1) return m;
+     
+    for (int j = i; j < S; j++) {     
+
+        /*if (ordena (i, j))
+            tot .....*/
+       if (j - i + 1 > M) break;
+       if (j - i + 1 == M) {
+            if (strncmp (seq + i, maior, M) > 0) 
+                break;     
+       }
+       
+        tot = (tot + pd (j + 1)) % MOD;
+       
+    }
+    return m = tot;
     
 }
 
-long long int pd (int i) {
-    if (n[i] == '\0') return 1;
-    long long int &m = memo[i], tot = 0;
-    if (m != -1) return m;
-    if (n[i] != '0') { 
-        for (int j = i; j < i + 100 && n[j] != '\0'; j++) {     
-            printf ("n[%d] %c\n", j, n[j]);    
-
-            if (ordena (i, j)) {
-                tot += pd (j + 1);
-                printf ("passei\n");
-            }
-            printf ("tot %lld\n", tot);
-        }
-        return m = tot;
-    }
-    return 0; 
-}
-
 int main () {
-    scanf ("%s %s", c, n);
-    tam = strlen (c);
-    printf ("tam %lld\n", tam);
-    for (int i = 0; n[i] != '\0'; i++) 
-        memo[i] = -1;
-    printf ("%lld\n", pd (0) % 1000000007);   
+    memset (memo, -1, sizeof (memo));
+
+    scanf ("%s %s", maior, seq);
+    
+    M = strlen (maior);
+    
+    S = strlen (seq);
+
+    printf ("%d\n", pd (0));   
 }
