@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int n, t, freq[MAX], ult[MAX];
+int n, t, ult[MAX];
 char v[MAX], c;
 map<char, int> m;
 
@@ -13,29 +13,32 @@ int main () {
     scanf ("%d", &t);
     
     while (t--) {
-        m.clear();
-        memset(freq,0,sizeof freq);
-        int k = 0;
         scanf("%d",&n);
+        
+        int k = 0;
+        m.clear();
         for (int i = 0; i < n; i++) {
             scanf (" %c", &c);
             v[i] = c;
             if(m.find(c) == m.end()) m[c] = k++;
             ult[m[c]] = i;
-            freq[m[c]]++;
         }
+        
         int podre, ans;
         ans = podre = 0;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) 
             podre += 5 * (ult[m[v[i]]] - i);
+        sort (v, v + n);
+
+        k = 0;
+        m.clear ();
+        for (int i = 0; i < n; i++) {
+            if (m.find (v[i]) == m.end ()) m[v[i]] = k++;
+            ult[m[v[i]]] = i;
         }
-        for(int i = 0; i < 170; i++) {
-            int num = freq[i];
-            if (num == 2) ans += 5;
-            else if(num >= 3)
-                ans += 5 + (num - 2) * 10 + ((num - 3) * (5 + (num - 3) * 5)) / 2;
-        }
-        ans = podre - ans;
-        printf ("%d\n", ans);
+        for (int i = 0; i < n; i++) 
+            ans += 5 * (ult[m[v[i]]] - i);
+    
+        printf ("%d\n", podre - ans);
     }
 }

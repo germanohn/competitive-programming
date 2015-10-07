@@ -1,35 +1,55 @@
 #include <cstdio>
 #include <cstring>
 #include <iostream>
+#include <algorithm>
+#include <vector>
 #define MAX 1000010
+#define pb push_back
 
 using namespace std;
 
-int n, m, me[10005][1005];
-long long int seq[MAX];
+int n, m, sum, a;
+int me[1005][1005][2];
+int seq[MAX];
 
-int pd (int i, long long int soma) {
-    if (soma % m == 0 && i != 0) return 1;
-    soma %= m;
-    if (i == n) return 0;
-    if (me[i][soma] != -1) return me[i][soma];
-        return me[i][soma] = pd (i + 1, (soma + seq[i])) + pd (i + 1, soma);
+int pd (int i, int soma, int flag) {
+    
+    if (soma == 0 && flag) {
+        //printf ("soma %d i %d\n", soma, i);
+        return 1;
+    }
+
+    if (i == n) {
+        //printf ("no -1 i %d\n", i);
+        return 0;
+    }
+
+    if (me[i][soma][flag] != -1) {
+        //printf ("na memoria soma %d i %d\n", soma, i);
+        return me[i][soma][flag];
+    }
+
+    return me[i][soma][flag] = pd (i + 1, (soma + seq[i]) % m, 1) + pd (i + 1, soma, flag);
 }
 
 int main () {
-    memset (me, -1, sizeof (me));
     scanf ("%d %d", &n, &m);
+    for (int i = 0; i <= m; i++)
+        for (int j = 0; j <= m; j++) 
+            for (int l = 0; l <= 1; l++)
+                me[i][j][l] = -1;
+
     for (int i = 0; i < n; i++) {
-        cin >> seq[i]; 
-        seq[i] %= m;
+        scanf ("%d", &seq[i]);
+        sum = (sum + seq[i]) % m;
     }
+    //printf ("sum %d\n", sum);
     if (n > m) printf ("YES\n");
     else { 
-        if (seq[0] % m == 0) {
+        if (pd (0, 0, 0)) {
             printf ("YES\n");
-            return 0;
+      //      printf ("no dois\n");
         }
-        if (pd (0, 0)) printf ("YES\n");
         else printf ("NO\n");
     }
 }
