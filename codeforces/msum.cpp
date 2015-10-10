@@ -13,21 +13,12 @@ int me[1005][1005][2];
 int seq[MAX];
 
 int pd (int i, int soma, int flag) {
-    
-    if (soma == 0 && flag) {
-        //printf ("soma %d i %d\n", soma, i);
+    if (soma == 0 && flag) 
         return 1;
-    }
-
-    if (i == n) {
-        //printf ("no -1 i %d\n", i);
+    if (i == n) 
         return 0;
-    }
-
-    if (me[i][soma][flag] != -1) {
-        //printf ("na memoria soma %d i %d\n", soma, i);
+    if (me[i][soma][flag] != -1) 
         return me[i][soma][flag];
-    }
 
     return me[i][soma][flag] = pd (i + 1, (soma + seq[i]) % m, 1) + pd (i + 1, soma, flag);
 }
@@ -43,12 +34,10 @@ int main () {
         scanf ("%d", &seq[i]);
         sum = (sum + seq[i]) % m;
     }
-    //printf ("sum %d\n", sum);
     if (n > m) printf ("YES\n");
     else { 
         if (pd (0, 0, 0)) {
             printf ("YES\n");
-      //      printf ("no dois\n");
         }
         else printf ("NO\n");
     }
