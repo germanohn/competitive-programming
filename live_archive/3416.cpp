@@ -2,7 +2,8 @@
 
 using namespace std;
 
-int n, f, b, t, ans;
+int n, f, b, t;
+long long int ans;
 
 struct tipo {
     int floor, box;
@@ -38,14 +39,31 @@ int main () {
                 k++;
             }
         }
-        int quant, quem, a;
+        /*for (int i = 0; i < n; i++) {
+            printf ("floor %d box %d\n", at[i].floor, at[i].box);
+        }*/
+        int quant, quem, x, y;
+        /* no caso de b/n nao ser divisao inteira, o numero sera o piso
+        // entao quem entregara o ultimo livro tera que entregar quant
+        // + 1 livros. se for divisao inteira entao tera que entregar quant
+        // livros*/
         quant = b/n;
-        quem = b%n;
-        if (at[quem].box == 0)
-            a = f + at[quem].floor;
-        else 
-            a = f - at[quem].floor;
-        ans = f * n + a;   
-        printf ("%d\n", ans);        
+        quem = b%n - 1;
+        if (quem < 0) quem = n-1;
+        //printf ("quant %d quem %d\n", quant, quem);
+        x = at[quem].box, y = at[quem].floor;
+        if (b%n == 0) {
+            if (x == 0)
+                ans = y + quant*2*f - f;
+            else 
+                ans = f - y + quant*2*f;
+        }
+        else {
+            if (x == 0) 
+                ans = y + (quant+1)*2*f - f;
+            else 
+                ans = f - y + (quant+1)*2*f;
+        }
+        printf ("%lld\n", ans);        
     }
 }
