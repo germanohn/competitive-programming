@@ -50,7 +50,7 @@ int main () {
             adj[b].pb (mp (c, a + w));
             adj[b + w].pb (mp (c, a));
         }
-               solve (1);
+        solve (1);
         if (dis[w] == INT_MAX) printf ("-1\n");
         else printf ("%d\n", dis[w]);
 

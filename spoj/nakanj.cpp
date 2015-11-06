@@ -22,7 +22,7 @@ void bfs (int r, int c) {
         for (int i = 0; i < 8; i++) {
             if (x + kx[i] >= 1 && x + kx[i] <= 8 && 
                 y + ky[i] >= 1 && y + ky[i] <= 8) {
-                if (m[x + kx[i]][y + ky[i]] > m[x][y] + 1) { 
+                if (m[x + kx[i]][y + ky[i]] > m[x][y]) { 
                     m[x + kx[i]][y + ky[i]] = m[x][y] + 1;    
                     q.push (mp (x + kx[i], y + ky[i]));
                 }
@@ -44,13 +44,8 @@ int main () {
         a = ini - 'a' + 1;
         b = fim - 'a' + 1;
         m[a][s] = 0;
-        bfs (s, a);
+        bfs (a, s);
         printf ("%d\n", m[b][e]);
-        /*for (int i = 1; i <= 8; i++) {
-            for (int j = 1; j <= 8; j++) {
-                printf ("%d ", m[i][j]);
-            }
-            printf ("\n");
-        }*/
+        
     }
 }
