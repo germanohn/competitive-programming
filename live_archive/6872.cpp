@@ -1,58 +1,47 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+typedef long long ll;
 
-int n, k, v[20], me[35][20];
+int n, v[35];
+ll memo[40][40], memo1[40][40][2];
 
-int pd (int n, int k) {
-    if (n < k) { 
-        return 0;
+ll dp1 (int i, int sum) {
+    if (sum <= 0) return 0;
+    if (i == n) return 1;
+    ll &m = memo[i][sum];
+    if (m != -1) return m;
+    ll ans = 0;
+    for (int j = 0; j < 31; j++) {
+        ans += dp1 (i+1, sum - j);
     }
-    if (n == k || k == 0) {
-        return 1;
-    }
-    int &m = me[n][k];
-    if (m != -1) {
-        return m;
-    }
-    return m = pd (n-1, k-1) + pd (n-1, k);
+    return m = ans;
 }
 
-int solve (int i, int f, int tmp) {
-    int aux = 0;
-    if (i == n-1)
-    if (f < 0) {
-        if (tmp > n-i)
-           return pd (tmp, n-i);
-        else 
-           return ans += pd (n-i, tmp); 
+ll dp2 (int i, int sum, bool pre) {
+    if (sum == 0) return 1;
+    if (sum < 0 || i == n) return 0;
+    ll &m = memo1[i][sum][pre];
+    if (m != -1) return m;
+    ll ans = 0;
+    for (int j = 0; j < 31; j++) {
+        if (pre && j > v[i]) break;
+        ans += dp2 (i+1, sum - j, pre && j== v[i]);
     }
-    if (i == n-1)
-        return 1;
-
-    for (int j = 0; j < v[i]; j++) {
-        aux += solve (i+1, -1, tmp-j);
-    }
-    printf ("i %d aux %d\n", i, aux);
-    return solve (i+1, 1, tmp-v[i]) + aux;
+    return m = ans;
 }
 
 int main () {
-    for (int i = 0; i <= n; i++) {
-        for (int j = 0; j <= k; j++) {
-            me[i][j] = -1;
-        }
-    }
     while (scanf ("%d", &n) && n != 0) {
-        ans = 0, tot = 0;
+        memset (memo, -1, sizeof (memo));
+        memset (memo1, -1, sizeof (memo1));
+        int sum = 0;
         for (int i = 0; i < n; i++) {
             scanf ("%d", &v[i]);
-            tot += v[i];
+            sum += v[i];
         }
-        for (int soma = 0; soma < tot; soma++) {
-            ans += soma + 1;
-        } 
-        ans += solve (0, 1, tot);   
-        printf ("%d\n", ans); 
+        ll ans = 0;
+        ans += dp1 (0, sum);
+        ans += dp2 (0, sum, true);
+        printf ("%lld\n", ans);
     }
 }
