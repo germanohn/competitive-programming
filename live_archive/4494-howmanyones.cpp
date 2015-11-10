@@ -12,6 +12,7 @@ ll dp (int i, int sum, bool pre) {
     if (m != -1) return m;
     ll r = 0;
     for (int d = 0; d <= 1; d++) {
+        //!!(n&(1<<i)) sera o digito do numero n na posicao i
         if (pre && d > !!(n & (1<<i))) break;
         r += dp (i-1, sum + d, pre && d == !!(n & (1<<i)));
     }

@@ -7,6 +7,7 @@ char str[10];
 ll me[35][35][2][2];
 
 ll dp (int i, int s, bool pre, bool f) {
+    //esse str[i] == 0 é o mesmo que str[i] == '\0'
     if (str[i] == 0) return s;
     ll &m = me[i][s][pre][f];
     if (m != -1) return m;
