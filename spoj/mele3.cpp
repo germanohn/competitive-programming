@@ -11,6 +11,11 @@ const int MAX = 50005;
 int n, k, a, b, d[MAX], acc;
 vector<pii> adj[MAX];
 
+int mod (int n, int m) {
+    if (n % m == 0) return m;
+    return n % m;
+}
+
 void solve () {
     priority_queue<pii> p;
     p.push (mp (0, 1));
@@ -18,27 +23,17 @@ void solve () {
     while (!p.empty ()) {
         int x = p.top ().ss;
         p.pop ();
-        
         for (int i = 0; i < adj[x].size (); i++) {
             pii next = adj[x][i];
-            int peso = 0;
-            printf ("divisao %d\n", (d[x]/next.ss)%2);
-            if (d[x] % next.ss == 0 && ((d[x]/next.ss) % 2) == 0) {
-                printf ("prime\n");
-                peso = 0;
-            }
-            else if (d[x] % next.ss == 0 && (d[x]/next.ss % 2) != 0) {
-                printf ("segun\n");
-                peso = next.ss;
-            }
-            else {
-                printf ("tercei\n");
-                peso = next.ss + next.ss - (d[x]%next.ss);
-            }
-            printf ("d[x] %d next.ss %d next.ff %d peso %d\n", d[x], next.ss, next.ff, peso);           
-            if (d[next.ff] > d[x] + next.ss + peso) {
-                printf ("\n");
-                d[next.ff] = d[x] + next.ss + peso;
+            /* d[x]: distancia andada ate agora
+            // primeiro next.ss: distancia que ele vai andar igual quando pegar elevador
+            // 2*next.ss :e o total do circuito que o elevador faz
+            // mod (d[x], 2*next.ss) : me dira onde que o elevador esta em seu trajeto, por
+            // isso que se mod e zero tenho que retornar 2*next.ss para diminuir do 
+            // 2*next.ss e (2*next.ss - mod) ser a posicao do elevador na sua trajetoria */
+            int resto = mod (d[x], 2*next.ss);
+            if (d[next.ff] > d[x] + next.ss + 2*next.ss - resto) {
+                d[next.ff] = d[x] + next.ss + 2*next.ss - resto;
                 p.push (mp (-d[next.ff], next.ff));
             }
         }
@@ -54,7 +49,6 @@ int main () {
         adj[a].pb (mp (b, b-a));
         adj[b].pb (mp (a, b-a));
     }
-    printf ("oi\n");
     solve ();
     printf ("%d\n", 5*d[k]);
 }
