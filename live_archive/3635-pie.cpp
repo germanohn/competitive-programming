@@ -2,8 +2,8 @@
 using namespace std;
 
 int n, f; 
-double pi = acos (-1), eps = 0.001;
-int v[10005];
+double pi = acos (-1), eps = 1e-7;
+double v[10005];
 
 int conta (double m) {
     int q = 0;
@@ -14,19 +14,25 @@ int conta (double m) {
 }
 
 int main () {
-    scanf ("%d %d", &n, &f);
-    for (int i = 0; i <n; i++) {
-        scanf ("%d", &v[i]);
-        v[i] = pi*v[i]*v[i];
+    int t;
+    scanf ("%d", &t);
+    while (t--) {
+        scanf ("%d %d", &n, &f);
+        // ATENCAO: tem um pedaco pra ele tambem 
+        f++;
+        for (int i = 0; i <n; i++) {
+            scanf ("%lf", &v[i]);
+            v[i] = pi*v[i]*v[i];
+        }
+        sort (v, v+n);
+        double e = 0, d = v[n-1];
+        int ans;
+        while (d-e > eps) {
+            double m = (e+d)/2.0;
+            ans = conta (m);
+            if (ans < f) d = m;
+            else e = m;
+        }
+        printf ("%.4lf\n", e);
     }
-    sort (v, v+n);
-    double e = 0, d = v[n-1];
-    while (d-e > eps) {
-        double m = (e+d+1)/2;
-        int ans = conta (m);
-        printf ("%d\n", ans);
-        if (ans <= f) d = m-1;
-        else e = m;
-    }
-    printf ("%.4lf\n", e);
 }
