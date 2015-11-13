@@ -2,17 +2,14 @@
 
 using namespace std;
 
-int w, h, vol, y, menor;
-double x, pi = acos (-1);
+int w, h;
+double x, pi = acos (-1), v1, v2;
 
 int main () {
     while (scanf ("%d %d", &w, &h) && w != 0) {
-        x = min (h / (pi + 1), w / 2);
-        vol = pi * ((x * x) / 4) * w;
-        y = w / pi;
-        if (vol > pi * ((x * x) / 4) * (n - x)))
-            printf ("%f\n", x / 2);
-        else
-            printf ("%f\n", y / 2);
-    }
+        x = min (h/(pi+1), (double) w);//pro caso de w ser a altura
+        v1 = pi/4* w * x * x;
+        v2 = pi/4 * w/pi *w/pi * (h-w/pi);
+        printf ("%.3lf\n", max (v1, v2));
+      }
 }

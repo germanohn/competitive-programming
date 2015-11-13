@@ -1,4 +1,5 @@
 //entao eu quero atender um numero n de pessoas com um tamanho maximo de pao
+//igual ao 3635-pie do live archive
 #include <bits/stdc++.h>
 #define MAX 10005
 
