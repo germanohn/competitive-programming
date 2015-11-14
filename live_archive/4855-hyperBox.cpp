@@ -31,10 +31,10 @@ int main () {
     int cont = 1;
     while(t--) {
         scanf ("%d", &n);
-        int ans = 1;
+        ll ans = 1;
         for (int i = 0; i < n; i++) {
             scanf ("%d", &v[i]);
-            int num = v[i], aux = 0;
+            ll num = v[i], aux = 0;
             while (num != 0) {
                 for (int i = 1; i < k; i++) {
                     if (f[i] > num) {
@@ -46,7 +46,7 @@ int main () {
             }
             ans *= aux;
         }
-        printf ("Case %d: %d\n", cont++, ans);
+        printf ("Case %d: %lld\n", cont++, ans);
         
     }
 }
