@@ -32,6 +32,10 @@ void solve () {
     }
 }
 
+int prox (int x, int y) {
+    
+}
+
 int main () {
     scanf ("%d", &t);
     while(t--) {
