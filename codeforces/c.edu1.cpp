@@ -1,56 +1,51 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAX = 10005;
+const int MAX = 100005;
 
 struct tipo {
     int x, y;
-    double ang;
+    int pos;
 };
 
-tipo p[MAX], tmp;
+tipo p[MAX];
 
-int n, x, y;
-double mi = -2;
+int n;
+long double PI = 3.14159265359;
 
-bool comp (tipo a, tipo b) {
-    return a.ang < b.ang;
+long double ang (tipo a) {
+    long double x = atan2 (a.y, a.x);
+    if (x < 0.0) return x + 2*PI;
+    return x;
 }
 
-bool angulo (tipo a, tipo b, int op) {
-    double ta, tb, ang;
-    ta = a.x*a.x + a.y*a.y;
-    tb = b.x*b.x + b.y*b.y;
-    ang = ((a.x*b.x + a.y*b.y)/(sqrt (ta*tb)));
-    //printf ("ang %lf\n", ang);
-    if (op) {
-        if (ang > mi) {
-        mi = ang;
-        return 1;
-        }
-        else return 0;
-    }
-    else return ang;
+bool comp (tipo a, tipo b) {
+    return ang (a) < ang (b);
 }
 
 int main () {
     scanf ("%d", &n);
     for (int i = 0; i < n; i++) {
         scanf ("%d %d", &p[i].x, &p[i].y);
-        int a = p[i].x, b = p[i].y;
-        tmp.x = 1, tmp.y = 0;
-        p[i].ang = angulo (p[i], tmp, 0); 
+        p[i].pos = i+1;
     }
     sort (p, p+n, comp);
-    /*printf ("\n");
-    for (int i = 0; i < n; i++) {
-        printf ("%d %d\n", p[i].x, p[i].y);
-    }*/
     int e, d;
+    long double ans = 100;
     for (int i = 0; i < n-1; i++) {
-        if (angulo (p[i+1], p[i], 1)) {
-            e = i+1, d = i+2;
+        long double dif = ang (p[i+1]) - ang (p[i]);
+        dif = min (dif, 2*PI-dif);
+        if (dif < ans) {
+            e = p[i].pos, d = p[i+1].pos;
+            ans = dif;
         }
     }
+
+    long double dif = ang (p[n-1]) - ang (p[0]);
+    dif = min (dif, 2*PI-dif);
+    if (dif < ans) {
+        e = p[n-1].pos, d = p[0].pos;
+    }
+    
     printf ("%d %d\n", e, d); 
 }
