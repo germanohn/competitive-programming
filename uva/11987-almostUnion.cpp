@@ -28,6 +28,11 @@ int main () {
     while (scanf ("%d %d", &n, &m) != EOF) {
         for (ll i = 1; i <= n; i++) {
             pai[i] = i+N;
+            //o pai de i+N é sempre i+N, entao por exemplo se pai de 3 é 4+n
+            // e de 4 é 4+n. veja que montando dessa forma nunca alguem 
+            // menor que n sera pai de alguem, logo posso mudar livremente um 
+            // cara de um conjunto para outro que como ninguem é descendente dele 
+            // nao dara problema.
             pai[i+N] = i+N;
             w[i+N] = 1;
             sum[i+N] = i;
