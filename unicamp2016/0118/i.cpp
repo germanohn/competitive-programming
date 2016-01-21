@@ -1,32 +1,22 @@
 #include <bits/stdc++.h>
-#define ff first
-#define ss second
-#define MAX 2000
 using namespace std;
 typedef pair<int, int> pii;
 
-pii v[MAX];
-
 int main () {
-    int n, accIn = 0, accCon, k = 0;
+    int acc[2000], a, b, n;
+    memset (acc, 0, sizeof acc); 
     scanf ("%d", &n);
-    for (int i = 0; i < n; i++) 
-        scanf ("%d %d", &v[i].ff, &v[i].ss);
-    sort (v, v+n);
-    bool f = false;
-    for (int i = 1; i <= 1826; i++) {
-        if (i >= v[k].ff && i <= v[k].ss) {
-            accIn++;
-            if (!f) accCon = 180, f = true;
-            if (i == v[k].ss) k++;
-        }
-        if (f) {
-            accCon--;
-            if (accIn > 90) {
-                printf ("No\n");
-                return 0;
-            }
-            if (accCon == 0) accIn = 0, f = false;
+    acc[0] = 0;
+    for (int i = 0; i < n; i++) { 
+        scanf ("%d %d", &a, &b);
+        for (int j = a; j <= b; j++)
+            acc[j] = 1;
+    }
+    for (int i = 1; i <= 1826; i++) acc[i] += acc[i-1];
+    for (int i = 180; i <= 1826; i++) {
+        if (acc[i]-acc[i-180] > 90) {
+            printf ("No\n");
+            return 0;
         }
     }
     printf ("Yes\n");
