@@ -12,7 +12,7 @@ void update (int idx, int val, int flag) {
             else bit[i].second += val;
 }
 
-pair<int, int>  query (int idx) {
+pair<int, int> query (int idx) {
     pair<int, int> sum; 
     for (int i = idx; i > 0; i -= i & -i) {
         sum.first += bit[i].first;
