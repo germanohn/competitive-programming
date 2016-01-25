@@ -36,19 +36,19 @@ int bfs () {
                     y + my[a] >= 0 && y + my[a] < c &&
                     z + mz[a] >= 0 && z + mz[a] < l) {
                     int &kk = m[x + mx[a]][y + my[a]][z + mz[a]];
-                    if (m[x][y][z] + 1 < kk) { 
+                    if (m[x][y][z] + 1 < kk) {
                         kk = m[x][y][z] + 1;
                         pos.i = x + mx[a];
                         pos.j = y + my[a];
                         pos.k = z + mz[a];
                         q.push (pos);
                     }
-                }    
+                }
         }
-        
+
     }
     return 0;
-}   
+}
 
 int main () {
     while (scanf ("%d %d %d", &l, &r, &c) && l != 0) {
@@ -63,16 +63,16 @@ int main () {
                         m[j][k][i] = 0;
                     }
                     else if (d == 'E') {
-                        fimL = i; 
+                        fimL = i;
                         fimR = j;
                         fimC = k;
                         m[j][k][i] = INT_MAX;
-                        
+
                     }
                     else if (d == '.')
                         m[j][k][i] = INT_MAX;
                     else if (d == '#')
-                        m[j][k][i] = -1;                    
+                        m[j][k][i] = -1;
                 }
             }
         }
