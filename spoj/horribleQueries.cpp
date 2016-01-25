@@ -63,9 +63,6 @@ int main () {
             if (a == 0) {
                 scanf ("%d %d %lld", &a, &b, &v);
                 update (a-1, b-1, v);
-                /*for (int i = 1; i <= 2*n; i++) 
-                    printf ("%d ", seg[i]);
-                printf ("\n");*/
             }
             else {
                 scanf ("%d %d", &a, &b);
