@@ -51,7 +51,7 @@ ll query (int a, int b) {
 }
 
 int main () {
-    int t, c, a, b; 
+    int t, c, a, b;
     ll v;
     scanf ("%d", &t);
     while (t--) {
