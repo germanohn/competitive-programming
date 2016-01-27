@@ -5,65 +5,40 @@
 using namespace std;
 typedef pair<int, int> pii;
 
-struct tipo {
-    int sum1, sum2, ele1, ele2, xx, yy;
-};//sum1 é a maior soma de intervalos isolados
-//sum2 é a maior soma ate agora do intervalo inteiro
+struct celula {
+    int esq, dir, mid, best; 
+};
 
-tipo seg[MAX];
+celula seg[MAX];
 
 void update (int l, int r, int n, int v, int ind) {
     if (ind < l || ind > r) return;
     if (l == r) {
-        seg[n].sum1 = seg[n].sum2 = v;
-        seg[n].ele1 = seg[n].ele2 = 1;
+        seg[n].esq = seg[n].dir = seg[n].mid = seg[n].best = v;
         return;
     }
     int m = (l+r)/2;
     update (l, m, 2*n, v, ind);
     update (m+1, r, 2*n+1, v, ind);
-    if (seg[2*n].sum1 > seg[2*n+1].sum1)
-        seg[n].sum1 = seg[2*n].sum1, seg[n].ele1 = seg[2*n].ele1;
-    if (seg[2*n].sum1 < seg[2*n+1].sum1)
-        seg[n].sum1 = seg[2*n+1].sum1, seg[n].ele1 = seg[2*n+1].ele1;
-    if (seg[2*n].sum1 == seg[2*n+1].sum1) {
-        if (seg[2*n].ele1 > seg[2*n+1].ele1)
-            seg[n].sum1 = seg[2*n].sum1, seg[n].ele1 = seg[2*n].ele1;
-        else seg[n].sum1 = seg[2*n+1].sum1, seg[n].ele1 = seg[2*n+1].ele1;
-    }
-    seg[n].sum2 = seg[2*n].sum2 + seg[2*n+1].sum2;
-    seg[n].ele2 = seg[2*n].ele2 + seg[2*n+1].ele2;
-    if (seg[n].sum2 >= seg[n].sum1)
-        seg[n].sum1 = seg[n].sum2, seg[n].ele1 = seg[n].ele2;
+    join (n);
+}
+
+int join (int n) {
+    seg[n].esq = max (seg[2*n].esq, max (seg[2*n].mid + seg[2*n+1].esq, seg[2*n].mid + seg[2*n+1].mid));
+    seg[n].dir = max (seg[2*n+1].dir, max (seg[2*n+1].mid + seg[2*n].esq, seg[2*n+1].mid + seg[2*n].mid));
+    seg[n].mid = max (seg[2*n]., max (seg[2*n+1].esq, seg[2*n].dir + seg[2*n+1].esq));
 }
 
 pii query (int l, int r, int n, int a, int b) {
-    tipo ans;
+    ans
     if (a > r || b < l) {
-        ans.sum1 = ans.sum2 = INT_MIN;
-        ans.ele1 = ans.ele2 = 0;
-        if (a > r) ans.xx = r+1;
-        else if (b < l) ans.yy = l-1;
-        return ans;
+       return INT_MAXi; 
     }
-    if (l >= a && r <= b) {
-        if (seg[n].sum1 > seg[n].sum2)
-            ans.sum1 = seg[n].sum1,      ans.ss = seg[n].ele1;
-        else
-            ans.ff = seg[n].sum2, ans.ss = seg[n].ele2;
-        return ans;
-    }
+    if (l >= a && r <= b) return seg[n];
     int m = (l+r)/2;
-    pii x = query (l, m, 2*n, a, b), y = query (m+1, r, 2*n+1, a, b);
-    if (x.ff > y.ff)
-        ans.ff = x.ff, ans.ss = x.ss;
-    if (x.ff == y.ff) {
-        if (x.ss > y.ss) ans.ff = x.ff, ans.ss = x.ss;
-        else ans.ff = y.ff, ans.ss = y.ss;
-    }
-    if (x.ff < y.ff)
-        ans.ff = y.ff, ans.ss = y.ss;
-    return ans;
+    query (l, m, 2*n, a, b);
+    query (m+1, r, 2*n+1, a, b);
+
 }
 
 int main () {
