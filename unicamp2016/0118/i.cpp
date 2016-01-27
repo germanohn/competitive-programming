@@ -4,10 +4,10 @@ typedef pair<int, int> pii;
 
 int main () {
     int acc[2000], a, b, n;
-    memset (acc, 0, sizeof acc); 
+    memset (acc, 0, sizeof acc);
     scanf ("%d", &n);
     acc[0] = 0;
-    for (int i = 0; i < n; i++) { 
+    for (int i = 0; i < n; i++) {
         scanf ("%d %d", &a, &b);
         for (int j = a; j <= b; j++)
             acc[j] = 1;
