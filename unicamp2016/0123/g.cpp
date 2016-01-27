@@ -24,10 +24,12 @@ void bfs () {
     while (!q.empty ()) {
         pii n = q.front ();
         q.pop ();
+
         for (int i = 0; i < 4; i++) {
             pii p.ff = n.ff+x[i], p.ss = n.ss+y[i];
-            if (pode (p.ff, p.ss) && d[p.ff][p.ss] == INT_MAX) {
-                
+            if (pode (p.ff, p.ss) && d[p.ff][p.ss] > d[n.ff][n.ss]+1) {
+                d[p.ff][p.ss] = d[n.ff][n.ss]+1;
+                q.push (pii (p.ff, p.ss));
             }
         }
     }
@@ -35,14 +37,19 @@ void bfs () {
 
 int main () {
     scanf ("%d %d", &r, &c);
+    pii st;
     for (int i = 0; i < r; i++) {
         for (int j = 0; j < c; j++) {
             scanf (" %c", &maze[i][j]);
-            if (maze[i][j] == 'F') q.push (mp (i, j));
-            if (end (i, j) && maze[i][j] == '.') d[i][j] = 0;
-            d[i][j] = INT_MAX; 
+            if (maze[i][j] == 'J') st.ff = i, st.ss = j;
+            if (maze[i][j] == 'F') {
+                q.push (pii (i, j));
+                d[i][j] = 0;
+            }
+            else d[i][j] = INT_MAX; 
         }
     }
     bfs ();
+    q.push (pii (st.ff, st.ss));
     
 }

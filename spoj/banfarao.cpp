@@ -32,13 +32,13 @@ int join (int n) {
 pii query (int l, int r, int n, int a, int b) {
     ans
     if (a > r || b < l) {
-       return INT_MAXi; 
+       return INT_MAX; 
     }
     if (l >= a && r <= b) return seg[n];
     int m = (l+r)/2;
     query (l, m, 2*n, a, b);
     query (m+1, r, 2*n+1, a, b);
-
+    
 }
 
 int main () {
