@@ -2,7 +2,7 @@
 #define ff first
 #define ss second
 #define MAX 400005
-#define MIN -1000000000
+#define MIN -100000005
 using namespace std;
 typedef pair<int, int> pii;
 
@@ -41,24 +41,24 @@ celula junta (celula x, celula y, celula &ans, int l, int r) {
     /*printf ("JUNTA l %d r %d\n", l, r);
         printf ("x.esq %d x.best %d x.dir %d x.sum %d y.esq %d y.best %d y.dir %d y.sum %d",
             x.esq, x.best, x.dir, x.sum, y.esq, y.best, y.dir, y.sum);
-    printf (" x.mid %d y.mid %d\n", x.mid, y.mid);*/
-    pii a = pii (x.esq, x.qesq), b = pii (x.sum + y.esq, x.qsum + y.qesq);
+    printf (" x.mid %d y.mid %d\n", x.mid, y.mid);
+    */pii a = pii (x.esq, x.qesq), b = pii (x.sum + y.esq, x.qsum + y.qesq);
     pii rta = max (a, b), c, d;
     ans.esq = rta.ff, ans.qesq = rta.ss;
-    /*printf ("\nans.esq %d %d\n", ans.esq, ans.qesq);
-    */
+    //printf ("\nans.esq %d %d\n", ans.esq, ans.qesq);
+    
 
     a = pii (y.dir, y.qdir), b = pii (y.sum + x.dir, y.qsum + x.qdir);
     rta = max (a, b); 
     ans.dir = rta.ff, ans.qdir = rta.ss;
-    /*printf ("ans.dir %d %d\n", ans.dir, ans.qdir);
-*/
+    //printf ("ans.dir %d %d\n", ans.dir, ans.qdir);
+
     a = pii (x.mid, x.qmid), b = pii (y.mid, y.qmid);
     c = pii (x.dir + y.esq, x.qdir + y.qesq);
     rta = max (a, max (b, c));
     ans.mid = rta.ff, ans.qmid = rta.ss;
-    /*printf ("ans.mid %d %d\n", ans.mid, ans.qmid);
-*/
+    //printf ("ans.mid %d %d\n", ans.mid, ans.qmid);
+
     ans.sum = x.sum + y.sum, ans.qsum = x.qsum + y.qsum;
     a = pii (ans.sum, ans.qsum), b = pii (ans.dir, ans.qdir);
     c = pii (ans.esq, ans.qesq), d = pii (ans.mid, ans.qmid);
@@ -67,7 +67,7 @@ celula junta (celula x, celula y, celula &ans, int l, int r) {
     rta = max (rta, max (a, max (b, max (c, d))));
     ans.best = rta.ff, ans.qbest = rta.ss;
             
-  /*  printf ("ans.best %d %d\n\n", ans.best, ans.qbest);*/
+    //printf ("ans.best %d %d\n\n", ans.best, ans.qbest);
 }
 
 void update (int l, int r, int n, int v, int ind) {
@@ -102,6 +102,7 @@ celula query (int l, int r, int n, int a, int b) {
     celula x, y, ans;
     x = query (l, m, 2*n, a, b), y = query (m+1, r, 2*n+1, a, b);        
     junta (x, y, ans, l, r);
+    //printf ("ANTES DA RTA\n");
     return ans;
 }
 
@@ -134,7 +135,3 @@ int main () {
         }
     }
 }
-            /*pii k, l, m, p, rta;
-            k = pii (ans.esq, ans.qesq), l = pii (ans.dir, ans.qdir); 
-            m = pii (ans.mid, ans.qmid), p = pii (ans.sum, ans.qsum);
-            rta = max (k, max (l, max (m, p)));*/
