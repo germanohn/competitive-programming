@@ -16,7 +16,7 @@ int main () {
         }
         else {
             if (f) zero++;
-        } 
+        }
     }
     printf ("%I64d\n", f ? ans : 0);
 }
