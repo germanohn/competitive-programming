@@ -1,38 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
 
 struct shark {
-    ll l, r, yes, no;
+    int l, r, q;
 };
 
 shark s[100005];
 int n, p;
-ll num;
-long double tmp;
+double ans = 0;
 
 int main () {
     scanf ("%d %d", &n, &p);
     for (int i = 0; i < n; i++) {
-        ll q = 0;
-        cin >> s[i].l >> s[i].r;
-        for (ll num = s[i].l; num < s[i].r; num++) {
-            if (num % p == 0) {
-                q = 1+(s[i].r-num)/p;
-                break;
-            }
-        }
-        s[i].yes = q;
-        s[i].no = s[i].r-s[i].l+1-q;
-    }   
-    ll q1, q2;
-    for (int i = 0; i < n-1; i++) {
-        q1 = s[i].l-s[i].r+1;
-        q2 = s[i+1].l-s[i+1].r+1;
-        tmp += 2000*(s[i].yes*q2 + s[i+1].yes*q1)/(q1+q2);
+        scanf ("%d %d", &s[i].l, &s[i].r);
+        s[i].q = s[i].r/p - (s[i].l - 1)/p;
+        //printf ("%d %d %d\n", s[i].l, s[i].r, s[i].q);
     }
-    q1 = s[n-1].l-s[n-1].r+1;
-    q2 = s[0].l-s[0].r+1;
-    tmp += 2000*(s[0].yes*q1 + s[n-1].yes*q2)/(q1+q2)/2;
-    printf ("%Le\n", tmp); 
-}
+    double a, b;
+    for (int i = 0; i < n; i++) {
+        //printf ("ans %lf\n", ans);
+        int res = (i+1)%n;
+        //printf ("res %d numerador %d\n", res, s[res].r-s[res].l+1-s[res].q);
+        a = ((double) (s[i].r-s[i].l+1-s[i].q)/(s[i].r-s[i].l+1)); 
+        b = ((double) (s[res].r-s[res].l+1-s[res].q)/(s[res].r-s[res].l+1));
+        //printf ("a %lf b %lf\n", a, b);
+        ans += 1 - (a*b);
+    }
+    printf ("%lf\n", ans*2000);
+}   

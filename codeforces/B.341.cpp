@@ -1,26 +1,17 @@
 #include <bits/stdc++.h>
-#define ff first
-#define ss second
 using namespace std;
-typedef pair<int, int> pii;
-typedef long long ll;
 
-int n;
-ll dir, esq;
-pii pos[2000005];
+int n, x, y, ans;
+map<int, int> cont[2];
 
 int main () {
     scanf ("%d", &n);
-    int tam = INT_MIN;
+    ans = 0;
     for (int i = 0; i < n; i++) {
-        cin >> pos[i].ff >> pos[i].ss;
-        if (pos[i].ff == pos[i].ss) dir++;
-        if (pos[i].ff > tam) tam = pos[i].ff;
-        if (pos[i].ss > tam) tam = pos[i].ss;
+        scanf ("%d %d", &x, &y);
+        ans += cont[0][x-y]+cont[1][x+y];
+        cont[0][x-y]++;
+        cont[1][x+y]++;
     }
-    for (int i = 0; i < n; i++) 
-        if (pos[i].ff+pos[i].ss == tam+1) esq++;
-    dir = (dir*(dir-1))/2;
-    esq = (esq*(esq-1))/2;
-    cout << dir+esq << endl;
+    cout << ans << endl;
 }
