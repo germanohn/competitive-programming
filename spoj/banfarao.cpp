@@ -1,137 +1,86 @@
 #include <bits/stdc++.h>
-#define ff first
-#define ss second
-#define MAX 400005
-#define MIN -100000005
+#define MAX 100005
+#define MIN -10000009
 using namespace std;
-typedef pair<int, int> pii;
 
-struct celula {
-    int esq, dir, sum, mid, best;
-    int qesq, qdir, qsum, qmid, qbest; 
+struct cel {
+    int l, r, m, s, ql, qr, qm, qs;
 };
 
-celula seg[MAX];
-
-void join (int n) {
-
-    pii a = pii (seg[2*n].esq, seg[2*n].qesq), b = pii (seg[2*n].sum + seg[2*n+1].esq, seg[2*n].qsum + seg[2*n+1].qesq);
-    pii rta = max (a, b), c, d;
-    seg[n].esq = rta.ff, seg[n].qesq = rta.ss; 
-
-    a = pii (seg[2*n+1].dir, seg[2*n+1].qdir), b = pii (seg[2*n+1].sum + seg[2*n].dir, seg[2*n+1].qsum + seg[2*n].qdir);
-    rta = max (a, b);
-    seg[n].dir = rta.ff, seg[n].qdir = rta.ss;
-
-    a = pii (seg[2*n].mid, seg[2*n].qmid), b = pii (seg[2*n+1].mid, seg[2*n+1].qmid);
-    c = pii (seg[2*n].dir + seg[2*n+1].esq, seg[2*n].qdir + seg[2*n+1].qesq);
-    rta = max (a, max (b, c));
-    seg[n].mid = rta.ff, seg[n].qmid = rta.ss;
+cel join (cel a, cel b) {
+    cel ans;
+    ans.s = a.s + b.s, ans.qs = a.qs + b.qs;
+    ans.l = ans.r = ans.m = MIN;
+    ans.ql = ans.qr = ans.qm = 0; 
     
-    seg[n].sum = seg[2*n].sum + seg[2*n+1].sum, seg[n].qsum = seg[2*n].qsum + seg[2*n+1].qsum;
-    a = pii (seg[n].esq, seg[n].qesq), b = pii (seg[n].dir, seg[n].qdir);
-    c = pii (seg[n].sum, seg[n].qsum), d = pii (seg[n].mid, seg[n].qmid); 
-    pii e = pii (seg[2*n].dir, seg[2*n].qdir), f = pii (seg[2*n+1].esq, seg[2*n+1].qesq);
-    rta = max (e, f);
-    rta = max (rta, max (a, max (b, max (c, d))));
-    seg[n].best = rta.ff, seg[n].qbest = rta.ss;
-}
-
-celula junta (celula x, celula y, celula &ans, int l, int r) {
-    /*printf ("JUNTA l %d r %d\n", l, r);
-        printf ("x.esq %d x.best %d x.dir %d x.sum %d y.esq %d y.best %d y.dir %d y.sum %d",
-            x.esq, x.best, x.dir, x.sum, y.esq, y.best, y.dir, y.sum);
-    printf (" x.mid %d y.mid %d\n", x.mid, y.mid);
-    */pii a = pii (x.esq, x.qesq), b = pii (x.sum + y.esq, x.qsum + y.qesq);
-    pii rta = max (a, b), c, d;
-    ans.esq = rta.ff, ans.qesq = rta.ss;
-    //printf ("\nans.esq %d %d\n", ans.esq, ans.qesq);
+    ans.m = max (ans.s, max (b.m, a.m));
+    ans.m = max (ans.m, a.r + b.l);
+    if (ans.m == ans.s) ans.qm = max (ans.qm, ans.qs);
+    if (ans.m == a.m) ans.qm = max (ans.qm, a.qm);
+    if (ans.m == b.m) ans.qm = max (ans.qm, b.qm);
+    if (ans.m == a.r + b.l) ans.qm = max (ans.qm, a.qr + b.ql); 
     
+    ans.r = max (b.r, b.s + a.r);
+    if (ans.r == b.r) ans.qr = max (ans.qr, b.qr);
+    if (ans.r == b.s + a.r) ans.qr = max (ans.qr, b.qs + a.qr);
 
-    a = pii (y.dir, y.qdir), b = pii (y.sum + x.dir, y.qsum + x.qdir);
-    rta = max (a, b); 
-    ans.dir = rta.ff, ans.qdir = rta.ss;
-    //printf ("ans.dir %d %d\n", ans.dir, ans.qdir);
+    ans.l = max (a.l, a.s + b.l);
+    if (ans.l == a.l) ans.ql = max (ans.ql, a.ql);
+    if (ans.l == a.s + b.l) ans.ql = max (ans.ql, a.qs + b.ql);
 
-    a = pii (x.mid, x.qmid), b = pii (y.mid, y.qmid);
-    c = pii (x.dir + y.esq, x.qdir + y.qesq);
-    rta = max (a, max (b, c));
-    ans.mid = rta.ff, ans.qmid = rta.ss;
-    //printf ("ans.mid %d %d\n", ans.mid, ans.qmid);
-
-    ans.sum = x.sum + y.sum, ans.qsum = x.qsum + y.qsum;
-    a = pii (ans.sum, ans.qsum), b = pii (ans.dir, ans.qdir);
-    c = pii (ans.esq, ans.qesq), d = pii (ans.mid, ans.qmid);
-    pii e = pii (x.dir, x.qdir), f = pii (y.esq, y.qesq);
-    rta = max (e, f);
-    rta = max (rta, max (a, max (b, max (c, d))));
-    ans.best = rta.ff, ans.qbest = rta.ss;
-            
-    //printf ("ans.best %d %d\n\n", ans.best, ans.qbest);
-}
-
-void update (int l, int r, int n, int v, int ind) {
-    if (ind < l || ind > r) return;
-    if (l == r) {
-        seg[n].esq = seg[n].dir = seg[n].sum = seg[n].mid = seg[n].best = v;
-        seg[n].qesq = seg[n].qdir = seg[n].qsum = seg[n].qmid = seg[n].qbest = 1;
-        return;
-    }
-    int m = (l+r)/2;
-    update (l, m, 2*n, v, ind);
-    update (m+1, r, 2*n+1, v, ind);
-    join (n);
-}
-
-celula query (int l, int r, int n, int a, int b) {
-    //printf ("l %d r %d a %d b %d\n", l, r, a, b);
-    if (a > r || b < l) {
-      //  printf ("FORA\n");
-    celula ans;
-       ans.dir = ans.esq = ans.sum = ans.mid = ans.best = MIN;
-       ans.qdir = ans.qesq = ans.qsum = ans.qmid = ans.qbest = 0;
-       return ans;
-    }
-    if (l >= a && r <= b) {
-        /*    printf ("QUERY no %d  esq %d %d best %d %d dir %d %d sum %d %d\n", n, 
-                    seg[n].esq, seg[n].qesq, seg[n].best, seg[n].qbest, seg[n].dir, 
-                    seg[n].qdir, seg[n].sum, seg[n].qsum);
-        */return seg[n];
-    }
-    int m = (l+r)/2;
-    celula x, y, ans;
-    x = query (l, m, 2*n, a, b), y = query (m+1, r, 2*n+1, a, b);        
-    junta (x, y, ans, l, r);
-    //printf ("ANTES DA RTA\n");
     return ans;
 }
 
+cel tree[4*MAX];
+
+cel query (int no, int ini, int fim, int a, int b) {
+    if (a > fim || b < ini) {
+        cel ans; 
+        ans.l = ans.r = ans.m = ans.s = MIN;
+        ans.ql = ans.qr = ans.qm = ans.qs = 1;
+        return ans;
+    }
+    if (ini >= a && fim <= b) return tree[no];
+    int mid = (ini + fim)/2;
+    return join (query (2*no, ini, mid, a, b), query (2*no + 1, mid+1, fim, a, b));
+}
+
+void update (int no, int ini, int fim, int v, int ind) {
+    if (ind < ini || ind > fim) return;
+    if (ini == fim) {
+        tree[no].l = tree[no].r = tree[no].m = tree[no].s = v;
+        tree[no].ql = tree[no].qr = tree[no].qm = tree[no].qs = 1;
+        return;
+    }
+    int mid = (ini+fim)/2;
+    update (2*no, ini, mid, v, ind);
+    update (2*no+1, mid+1, fim, v, ind);
+    tree[no] = join (tree[2*no], tree[2*no + 1]); 
+}
+
 int main () {
-    int t, conta, aux, q, a, b;
-    celula ans; 
-    scanf ("%d", &t);
-    while (t--) {
-        scanf ("%d", &conta);
-        for (int i = 0; i < 4*conta; i++)
-            seg[i].esq = seg[i].dir = seg[i].best = seg[i].sum = MIN;
-        for (int i = 0; i < conta; i++) {
-            scanf ("%d", &aux);
-            update (0, conta-1, 1, aux, i);
+    int T;
+    scanf ("%d", &T);
+    while (T--) {
+        int N;
+        scanf ("%d", &N);
+        for (int i = 0; i < N; i++) { 
+            int v;
+            scanf ("%d", &v);
+            update (1, 0, N-1, v, i);
         }
-        //printf ("\n");
-        int cont = 1;
-        /*for (int i = 1; i < 3*conta; i++)
-            printf ("no %d  esq %d %d best %d %d dir %d %d sum %d %d\n", cont++, 
-                    seg[i].esq, seg[i].qesq, seg[i].best, seg[i].qbest, seg[i].dir, 
-                    seg[i].qdir, seg[i].sum, seg[i].qsum);
-        */scanf ("%d", &q);
-        for (int i = 0; i < q; i++) {
+        int Q;
+        scanf ("%d", &Q);
+        for (int i = 0; i < Q; i++) {
+            int a, b;
             scanf ("%d %d", &a, &b);
-            ans = query (0, conta-1, 1, a-1, b-1);
-            /*printf ("ans  esq %d %d best %d %d dir %d %d sum %d %d\n",  
-                    ans.esq, ans.qesq, ans.best, ans.qbest, ans.dir, 
-                    ans.qdir, ans.sum, ans.qsum);
-              */  printf ("%d %d\n", ans.best, ans.qbest);    
+            cel ans;
+            ans = query (1, 0, N-1, a-1, b-1);
+            int rta = max (ans.m, max (ans.r, ans.l)), sz = 0;
+            if (rta == ans.m) sz = max (sz, ans.qm);
+            if (rta == ans.r) sz = max (sz, ans.qr);
+            if (rta == ans.l) sz = max (sz, ans.ql);
+            printf ("%d %d\n", rta, sz);
         }
     }
 }
