@@ -11,17 +11,26 @@ ll a, b, c, n, ans;
 
 int main () {
     cin >> n >> a >> b >> c;
-    if (n > b) {
-        if (b - c >= a) ans = n/a;
-        else if (b - c < a && b >= a) {
-            ll ans = n/(b - c), aux = (n - b)/(b - c);
-            aux -= (ans-1)*(b - c);
-            if (aux < b && aux < a) ans--;
-        }
-        else if (b - c < a && b < a) 
-            ans = n/(b - c);
+    if (a <= b - c) cout << n/a << endl;
+    else if (a >= b) {
+       ll k = 0;
+       if (n >= b) {
+           //quero saber o k tal que n - k(b-c) < b
+           k = (n - b)/(b - c) + 1;
+           n -= k*(b - c);
+       }
+       //sempre é otimo pegar o ultimo de b
+       k += n/b;
+       cout << k << endl; 
     }
-    else 
-        ans =  n/a;
-    cout << ans << endl;
+    else {
+       ll k = 0;
+       if (n >= b) {
+           k = (n - b)/(b - c) + 1;
+           n -= k*(b - c);
+       }
+       //sempre é otimo pegar o ultimo de a
+       k += n/a;
+       cout << k << endl; 
+    }
 }
