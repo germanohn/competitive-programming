@@ -1,22 +1,23 @@
 #include<bits/stdc++.h>
 #define MOD 1000000007
 using namespace std;
+typedef long long ll;
 
-int B, G;
-int me[1005][1005];
+ll B, G;
+ll me[1005][1005];
 
-int dp (int b, int g) {
+ll dp (ll b, ll g) {
     if (b == 0) return g == 0;
     if (me[b][g] != -1) return me[b][g];
-    int ans = 0;
-    ans += ((ll) dp (b-1, g-1)) * ((ll) g) % MOD;
+    ll ans = 0;
+    ans += (dp (b-1, g-1) * g) % MOD;
     ans += (dp (b-1, g) * (G-g)) % MOD;
     return me[b][g] = ans;
 }
 
 int main () {
-    while (scanf ("%d %d", &B, &G) && B != 0 && G != 0) {
+    while (scanf ("%lld %lld", &B, &G) && B != 0 && G != 0) {
         memset (me, -1, sizeof me);
-        printf ("%d\n", dp (B, G));
+        printf ("%lld\n", dp (B, G));
     }
 }
