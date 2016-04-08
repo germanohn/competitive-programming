@@ -1,0 +1,8 @@
+quando tiver que calcular um fatorial mod um numero
+se esse numero for primo entao podemos usar o pequeno 
+teorema de fermat:
+
+calculamos o numerador mod p
+calculamos o denominado mod p
+
+fatorial sera o numerador * fexp (denominador, p-2)

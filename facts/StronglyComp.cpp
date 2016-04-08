@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+#define ff first
+#define ss second
+#define pb push_back
+#define mp make_pair
+#define debug (args...) fprintf (stderr, args)
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> pii;
+
+int time = 0, sn = 0;
+
+void dfs (int u) {
+    seen[u] = true;
+    st[sn++] = u;
+    d[u] = low[u] = time++;
+    for (int i = 0; i < adj[u].size (); i++) {
+        int v = adj[u][i];
+        if (!seen[v]) {
+            dfs (v);
+            low[u] = min (low[u], low[v]);
+        } else {
+            low[u] = min (low[u], low[v]);
+        }
+    }
+    // u ja foi finalizado
+    if (low[u] >= d[u]) {
+        int a;
+        do {
+            a = st[--sn];
+            comp[a] = u;
+            low[a] = INT_MAX;
+        } while (a != u) 
+    }
+}
+
+void dfs (int u) {
+    // 
+    for (int e = head[u]; e != 0; e = nx[e]) {
+        int v = to[e];
+    }
+}
+
+/* head[u] é o identificador da primeira aresta de */
+
+int main () {
+    int n, u, v, es = 0;
+    scanf ("%d", &n);
+    for (int i = 0; i < n; i++) {
+        scanf ("%d %d", &u, &v);
+        to[es] = v;
+        nx[es] = head[u];
+        head[u] = es++;
+        to[es] = u;
+        nx[es] = head[v];
+        head[v] = es++;
+    }
+}
+

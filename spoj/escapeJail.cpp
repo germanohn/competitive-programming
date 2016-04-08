@@ -16,22 +16,17 @@ void bfs () {
         q.pop ();
         for (int i = 0; i < adj[x].size (); i++) {
             int nx = adj[x][i];
-            //printf ("x %d nx %d\n", x, nx);
-            if (!vis[nx] && key[nx]) {
-                //printf ("é chave nx %d\n", nx);
-                ok[key[nx]] = true;
-                vis[nx] = true;
-                if (vis[key[nx]])
-                    q.push (key[nx]);
-                q.push (nx);
-            } else if (!vis[nx] && door[nx]) {
-                if (ok[nx] && !vis[nx]) {
+            if (!vis[nx]) {
+                if (key[nx]) {
+                    ok[key[nx]] = true;
+                    if (vis[key[nx]])
+                        q.push (key[nx]);
                     q.push (nx);
-                }
+                } else if (door[nx]) {
+                    if (ok[nx]) 
+                        q.push (nx);
+                } else q.push (nx);
                 vis[nx] = true;
-            } else if (!vis[nx]) {
-                vis[nx] = true;
-                q.push (nx);
             }
         }
     }

@@ -54,7 +54,7 @@ int main () {
             else {
                 scanf ("%lld", &p);
                 p = find (p);
-                printf ("%d %lld\n", w[p], sum[p]);
+                printf ("%d %lld\n", w[find (p)], sum[find (p)]);
 
             }
         }

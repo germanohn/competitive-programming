@@ -1,0 +1,1 @@
+valgrind --leak-check=yes --track-origins=yes ./nome_do_programa < entrada.txt
