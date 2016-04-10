@@ -1,0 +1,21 @@
+int* var
+significa que criei uma variavel var do tipo ponteiro para enderecos de conteudos para tipo int.
+logo var: é o endereco do que esse ponterio aponta
+     *var: é o conteudo do que tem no endereco da memoria apontada por var
+
+no caso de vetores tanto 
+char* s seguido de s = malloc (MAX * sizeof (char*)), pois   
+quanto 
+char s[tam]
+funcionam do mesmo jeito:
+
+temos uma variavel s do tipo ponteiro para endereços de conteudos tipo char
+s: é o endereco do que esse ponteiro aponta
+s[i]: é o conteudo do que tem no endereco da memoria apontada por var
+
+&s[0] é o mesmo que s
+
+
+obs: malloc (ver pagina do pf http://www.ime.usp.br/~pf/algoritmos/aulas/aloca.html)
+A função  malloc  (o nome é uma abreviatura de memory allocation) aloca um bloco de bytes consecutivos na memória RAM (= random access memory) do computador e devolve o endereço desse bloco.  O número de bytes é especificado no argumento da função. No seguinte fragmento de código, malloc aloca 1 byte
+Para alocar um objeto que ocupa mais de 1 byte, é preciso recorrer ao operador sizeof, que diz quantos bytes o tipo de objeto desejado tem:
