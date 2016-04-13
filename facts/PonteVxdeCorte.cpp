@@ -32,8 +32,6 @@ void dfs (int u, int p) {
             if (low[v] > d[u]) 
                 uv é ponte;
         } else if (v != p) {
-            // tem que ser d[v] porque me dira o menor que consigo chegar com apenas uma aresta
-            //
             low[u] = min (low[u], d[v]);
         }
     }
