@@ -26,6 +26,8 @@ int main () {
         if (a != 0) {
             memset (memo, -1, sizeof (memo));
             n = a-1;
+            // como o limite de a e b é 2*10e9, pra representar esse numero é preciso 31 posicoes 
+            // na representacao binaria e como terei i ate 0 entao coloco 30 como primeiro estado
             mini = dp (30, 0, true);
         }
         n = b;
