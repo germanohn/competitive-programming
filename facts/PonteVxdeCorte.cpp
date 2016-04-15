@@ -8,6 +8,12 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> pii;
 
+// grafo sera bidirecionado
+// aresta de retorno: aresta entre um adjacente a mim, mas que ja foi visto (nao é meu filho na arvore de dfs) e não teve a sua recursao terminada
+// nao tem aresta de cruzamento
+// por isso que no else if sera low[u] = min (low[u], d[v]), pois se colocasse low[v] entao poderia acontecer 
+// que low[u] fosse menor que d[v], sendo que u nao tem aresta com um vertice anterior a v.
+
 int time;
 
 void dfs (int u, int p) {

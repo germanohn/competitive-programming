@@ -56,7 +56,7 @@ void dfs (int u, int p) {
                 bridge.insert (pii (u, v));
             }
         } else if (v != p) {
-            low[u] = min (low[u], low[v]);
+            low[u] = min (low[u], d[v]);
         }
     }
     if (u == raiz && nf >= 2) 

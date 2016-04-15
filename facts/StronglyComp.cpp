@@ -8,6 +8,11 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> pii;
 
+// grafo direcionado
+// aresta de cruzamento: aresta entre um adjacente a mim, mas que já foi visto (não é meu filho na arvore de dfs) e teve a sua recursao terminada
+// por isso que no else se faz low[u] = min (low[u], low[v]), mas poderia ser d[v] tambem
+// aresta de retorno: aresta entre um adjacente a mim, mas que já foi visto e não teve a sua recursao terminada
+
 int time = 0, sn = 0;
 
 void dfs (int u) {
@@ -20,6 +25,9 @@ void dfs (int u) {
             dfs (v);
             low[u] = min (low[u], low[v]);
         } else {
+            // pode ser tanto low[v] ou d[v]
+            // se for low[v] entao low[u] ira guardar o menor vertice que consigo chegar com numero de arestas variavel
+            // se for d[v] entao low[u] ira guardar o menor vertice que consigo chegar com uma unica aresta 
             low[u] = min (low[u], low[v]);
         }
     }
