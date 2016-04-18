@@ -5,7 +5,7 @@ using namespace std;
 typedef pair<int, int> pii;
 
 const int MAX = 1123456;
-const int inf = 123456789;
+const int inf = 1000000000;
 
 struct relacao {
 	char s1[25], s2[25];
@@ -41,6 +41,7 @@ int convert (int val, string s) {
 			if (val & (1 << k))
 				val -= (1 << k);
 		}
+        k++;
 	}
 	return val;
 }
@@ -55,12 +56,16 @@ void dijkstra () {
 		// pra cada cara que fiz vou ver em quais patches ele se encaixa 
 		// se encaixar eu relaxo a aresta e coloco na pq
 		for (int i = 0; i < p; i++) {
+      //      printf ("i %d\n", i);
 			string s = rel[i].s1;
 			if (fit (u, s)) {
+        //        printf ("u %d s %s\n", u, s.c_str ());
 			// entao agora preciso usar o patch 		
 				s = rel[i].s2;
 				int v = convert (u, s);
+          //      printf ("v %d s %s\n", v, s.c_str ());
 				if (d[u] + rel[i].cost < d[v]) {
+            //        printf ("dis v %d\n", v);
 					d[v] = d[u] + rel[i].cost;
 					pq.push (pii (-d[v], v));
 				}
@@ -84,5 +89,6 @@ int main () {
 			printf ("Bugs cannot be fixed.\n");
 		else  
 			printf ("Fastest sequence takes %d seconds.\n", d[end]);
+        printf ("\n");
     }
 }
