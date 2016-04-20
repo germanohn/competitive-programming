@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+#include <cstdio>
+#include <algorithm>
+#include <cstring>
 #define ff first
 #define ss second
 #define pb push_back
@@ -8,6 +10,7 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> pii;
 
+const int inf = 1000000000;
 const int MAX = 100005;
 
 struct interval {
@@ -15,26 +18,40 @@ struct interval {
 };
 
 int n, m, e;
-int me[MAX]
+int dp[MAX];
 interval inter[MAX];
 
-int dp (int i, int end) {
-    if (i == n) 
-        return 0;
-    if (me[i][end] != -1) return me[i][end];
-    int ans;
-    ans = dp (i+1, end);
-    if (inter[i].t1 <= end && inter[i].t2 > end) 
-        ans += dp (i+1, inter[i].t2) + inter[i].s;
-    return me[i][end] = ans;
+bool cmp (interval a, interval b) {
+	return a.t2 > b.t2;
 }
 
 int main () {
-
-    scanf ("%d %d", &n, &m);
+    scanf ("%d %d %d", &n, &m, &e);
     for (int i = 0; i < n; i++) 
         scanf ("%d %d %d", &inter[i].t1, &inter[i].t2, &inter[i].s);
-    sort (inter, inter+n);
-    printf ("%d\n", dp (0, 0));
+	// ordena pelo fim
+    sort (inter, inter+n, cmp);
+	// dp bottom-up
+	for (int i = 0; i < n; i++) {
+		if (inter[i].t2 == e) {
+			dp[i] = inter[i].s;
+			continue;
+		}
+		int ans = inf;
+		for (int j = 0; j < i; j++) {
+			if (inter[i].t2 >= inter[j].t1-1)
+				ans = min (ans, inter[i].s + dp[j]);
+		}
+		dp[i] = ans;
+	}
+	int ans = inf;
+	// pega o minimo dos intervalos que comecam em m
+	for (int i = 0; i < n; i++)
+		if (inter[i].t1 == m)
+			ans = min (ans, dp[i]);
+	if (ans == inf)
+		printf ("-1\n");
+	else 
+		printf ("%d\n", ans);
 }
 

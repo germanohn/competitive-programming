@@ -17,11 +17,7 @@ int main () {
         for (int i = 0; i < n; i++) 
             scanf ("%d", &v[i]);
         sort (v, v+n);
-        /*printf ("v\n");
-        for (int i = 0; i < n; i++)
-            printf ("%d ", v[i]);
-        printf ("\n");
-        */scanf ("%d", &m);
+        scanf ("%d", &m);
         int k = 0;
         for (int i = 0; i < n; i++) {
             for (int j = i+1; j < n; j++) {
@@ -29,11 +25,7 @@ int main () {
             }
         }
         sort (sum, sum+k);
-        /*printf ("k %d sum[k] %d\n", k, sum[k]);
-        for (int i = 0; i < k; i++) 
-            printf ("sum %d\n", sum[i]);
-        printf ("\n");
-        */int num;
+        int num;
         printf ("Case %d:\n", cont++);
         for (int i = 0; i < m; i++) { 
             scanf ("%d", &num); 
