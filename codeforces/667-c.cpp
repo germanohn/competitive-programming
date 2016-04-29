@@ -10,40 +10,61 @@ typedef pair<int, int> pii;
 
 const int MAX = 10005;
 
-int tam;
 char s1[MAX], s2[MAX];
+int me[MAX][2];
 set<string> pal;
+
+void dp (int i, int ant) {
+    if (i <= 4) 
+        return;
+    if (me[i][ant] != -1) return; 
+    me[i][ant] = 1;
+    if (ant == 2) {
+        if (s1[i] != s1[i+2] && s1[i-1] != s1[i+1]) {
+            s2[0] = s1[i-1], s2[1] = s1[i], s2[2] = '\0';
+            pal.insert (s2);
+            dp (i-2, 2);
+        }
+        s2[0] = s1[i-2], s2[1] = s1[i-1], s2[2] = s1[i-2], s2[3] = '\0';        
+        pal.insert (s2);
+        dp (i-3, 3);
+    } else {
+        if (s1[i] != s1[i+3] && s1[i-1] != s1[i+2] && s2[i-2] != s1[i+3]) {
+            s2[0] = s1[i-2], s2[1] = s1[i-1], s2[2] = s1[i-2], s2[3] = '\0';        
+            pal.insert (s2);
+            dp (i-3, 3);
+        }
+        s2[0] = s1[i-2], s2[1] = s1[i-1], s2[2] = s1[i-2], s2[3] = '\0';        
+        pal.insert (s2);
+        dp (i-2, 2);
+    }
+}
 
 int main () {
     scanf (" %s", s1);
-    tam = strlen (s1);
-    for (int i = 5; i < tam; i++) {
-        if (i + 1 < tam && tam - (i+2) != 1) {
-            strncpy (s2, s1 + i, 2);
-            // tem que ser diferente da pal antes e da pal depois
-            if (s2[0] == s1[i-2] && s2[1] == s1[i-1]) 
-                continue;
-            if (s2[0] == s1[i+2] && s2[1] == s1[i+3]) 
-                continue;
-            s2[2] = '\0';
-            pal.insert (s2);
-        } 
-        if (i + 2 < tam && tam - (i+3) != 1) {
-            strncpy (s2, s1 + i, 3);
-            // antes
-            if (s2[0] == s1[i-3] && s2[1] == s1[i-2] && s2[2] == s1[i-1])
-                continue;
-            if (s2[0] == s1[i+3] && s2[1] == s1[i+4] && s2[2] == s1[i+5])
-                continue;
-            s2[3] = '\0';
-            pal.insert (s2);
-        } 
-    } 
+    int tam = s1.length ();
+    if (tam - 3 >= 5) {
+        s2[0] = s1[tam-2], s2[1] = s1[tam-1], s2[2] = '\0';
+        dp (tam - 3, 2);
+        pal.insert (s2);
+    }
+    if (tam - 4 >= 5) {
+        s2[0] = s1[tam-3], s2[1] = s1[tam-2], s2[2] = s1[tam-3], s2[3] = '\0';        
+        dp (tam - 4, 3);
+        pal.insert (s2);   
+    }
     tam = pal.size ();
     printf ("%d\n", tam);
     set<string>::iterator it;
     for (it = pal.begin (); it != pal.end (); it++) {
-        cout << (*it) << "\n";
+        printf ("%s\n", (*it));
     }
 }
+
+
+
+
+
+
+
 
