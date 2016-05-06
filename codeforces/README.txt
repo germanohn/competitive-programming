@@ -6,3 +6,9 @@
     C: vetor de 0, 1, quer a maior sequencia com k zeros
        (two pointers)
     D:
+
+-contest 335 (606)
+    A: dadas tres cores tenho uma quantidade de cada e uma quantidade que preciso. sabendo que posso transformar duas cores
+iguais em uma cor qualquer, quero saber se é possivel conseguir o que preciso.
+       SOLUCAO: guarda duas variaveis: has e need. no final veremos qual é maior. entao anda linear nas 3, pra cada cor ve se ela
+contribui para has ou need.

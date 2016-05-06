@@ -8,7 +8,6 @@ int ans, n;
 
 int main () {
     scanf ("%d", &n);
-    ans = 0;
     // min 
     ans += 2*(n/7);
     if (n % 7 == 6) ans += 1;
