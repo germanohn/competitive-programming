@@ -14,4 +14,11 @@ a sum of two distinct numbers from the set, which is closest to the query number
 anda nesse vetor de somas ordenadas e acha entre quais somas a query esta. entao ve qual a mais proxima e imprime.
 	   NÍVEL: 2
 
+146: ID codes
+       next_permutation: next_permutation (iterator para comeco da sequencia, iterator para final da sequencia)
+Return value: true if the function could rearrange the object as a lexicographicaly greater permutation.
+Otherwise, the function returns false to indicate that the arrangement is not greater than the previous,
+The first such-sorted possible permutation (the one that would compare lexicographically smaller to all other permutations)
+is the one which has all its elements sorted in ascending order, and the largest has all its elements sorted in descending order.
+but the lowest possible (sorted in ascending order).
 
