@@ -1,0 +1,52 @@
+DEFINICAO
+    recorrencia linear é uma funcao ou sequencia tal que cada termo é uma 
+combinacao linear dos anteriores (Linear significa que os termos anteriores sao apenas multiplicados por uma constante (possivelmente 0) e nada mais.
+entao f (i) = f(i-1) * f(i-2) nao é recorrencia linear.
+
+PROBLEMA
+    dada uma funcao f, definida como uma recorrencia linear, calcule f (N).
+N pode ser bem grande
+
+PASSOS: (usarei fibonacci como exemplo)
+
+1) Determine K, o número de termos que f (i) depende
+Mais formalmente K é o mínimo número inteiro tal que f (i) nao depende de
+f (i-M), pra todo M > K.
+
+f (n) = f (n-1) + f (n-2)
+
+2) Determine o vetor F1, vetor dos valores iniciais
+Se cada termo da recorrência depende dos K anteriores a ele então é 
+preciso ter os K primeiros termos definidos, do contrário a recorrência 
+inteira não estã definida
+    Entao definimos um vetor em que na primeira linha colocamos f (k), na 
+segunda f (k-1) e assim por diante ate f (1) na ultima linha
+
+3) Determinamos a matriz de transformação T
+Vamos construir uma matriz T tal que TFi = Fi+1
+
+Temos f (i) = somatorio (cj * f (i-j)) com j indo de 1 a k.
+-entao coloca a primeira linha coloca as constantes comecando de ck ate c1
+
+-entao na segunda linha coloca um 1 na primeira coluna
+
+-na terceira linha um 1 na segunda coluna 
+...
+-e assim por diante ate a ultima linha
+
+4) Determina Fn
+F2 = TF1
+F3 = TF2 = T²F1
+...
+Fn = T^(n-1)F1
+
+Agora basta calcular T^(n-1) eficientemente
+Pra isso usamos o método exponentiation by squaring is a general method for 
+fast computation of large positive integer powers of a number, or more 
+generally of an element of a semigroup, like a polynomial or a square matrix.
+
+-A^p = A, se p = 1
+
+-A^p = A(A^(p-1)) se p é impar
+
+-A^p = X^2, em que X = A^(p/2)

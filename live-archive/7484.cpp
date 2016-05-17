@@ -13,12 +13,12 @@ const int MAX = 3005;
 int n; 
 ll v[MAX], acc[MAX], me[MAX][MAX];
 
-int bs (int sum) {
+int bs (ll sum) {
     int l = 0, h = n, m;
-    while (l <= h) {
+    while (l < h) {
         m = (l+h)/2;
         if (acc[m+1] >= sum)
-            h = m-1;
+            h = m;
         else 
             l = m+1;
     }
