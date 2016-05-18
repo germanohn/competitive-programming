@@ -22,3 +22,15 @@ The first such-sorted possible permutation (the one that would compare lexicogra
 is the one which has all its elements sorted in ascending order, and the largest has all its elements sorted in descending order.
 but the lowest possible (sorted in ascending order).
 
+Rearranges the elements in the range [first,last), in such a way that the element at the nth position is the element that would be in that position in a sorted sequence.
+
+10107: what is the median?
+    want: quer achar o elemento que estaria no centro da sequencia se ela estivesse ordenada.
+    nth_element (ponteiro pro primeiro da sequencia, iterator apontando pra localizacao do elemento no range, ponteiro pro ultimo elemento da
+sequencia nao inclusivo)
+Rearranges the elements in the range [first,last), in such a way that the element at the nth 
+position is the element that would be in that position in a sorted sequence.
+The other elements are left without any specific order, except that none of the elements preceding nth are greater than it, 
+and none of the elements following it are less
+
+

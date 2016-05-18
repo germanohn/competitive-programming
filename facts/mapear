@@ -1,0 +1,17 @@
+Mapear é atribuir um valor a um dado elemento (map é funcao)
+É usado quando o range dos valores dos numeros sao muito grandes e so importa 
+o valor relativo entre eles (quem é maior ou menor) e nao seu valores absolutos
+
+Aprendi de duas maneiras:
+
+- usando map e um contador k
+pra cada elemento, ve ele esta no map (map.find (elemento) != map.end ()). se ele estiver retorna seu valor
+    senão, faz map[elemento] = k++.
+
+- usando vetor, unique e lower_bound (ver 4812 live_archive)
+
+1) coloca todos os elementos em um vetor 
+2) sorta o vetor
+3) pra cada elemento vamos atribuir a posicao dele no vetor. Pra isso usamos lower_bound que retorna
+o iterator apontando para o primeiro elemento nao menor que o elemento pedido em questao. entao diminuimos
+v (ponteiro do vetor) e entao obtemos a posicao do elemento no vetor que sera o novo valor do elemento

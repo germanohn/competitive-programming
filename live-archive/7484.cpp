@@ -29,11 +29,12 @@ ll dp (int i, int j) {
     if (j >= n || i >= n || i > j)
         return 0;
     if (me[i][j] != -1) return me[i][j];
+    // temos que procurar no vetor o indice k tal que possua pelo menos acc[j] - acc[i-1] a mais 
+    // de acc[j]. lembrando que acc esta indexado de 1, entao i-1 é i, j é j+1
     ll sum = acc[j+1] - acc[i] + acc[j+1];
-    //printf ("i %d j %d sum %lld\n", i, j, sum);
     int k = bs (sum); 
+    // outra maneira usando lower_bound
     //int k = lower_bound(acc, acc+n+1, acc[j+1]-acc[i]+acc[j+1]) - acc - 1;
-    //printf ("k %d\n", k); 
     return me[i][j] = max (dp (i, j+1), 1 + dp (j+1, k));
 }
 
