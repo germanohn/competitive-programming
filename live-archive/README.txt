@@ -36,3 +36,23 @@ de briefcase para o proximo chefe.
    Na primeira escolha chamo dp (i, j+1). Na segunda escolha faco uma busca binaria (lower_bound nesse caso) em um vetor de acumulados 
 para saber o primeiro briefcase k cuja quantidade de bananas de j+1 a ele seja nao menor que a quantidade de bananas do chefe anterior.
 Pego o máximo disso.
+
+4863 (balloons): guloso
+    - dado n times (1000), cada time precisa de k (baloes) e esta a uma distancia da da sala A e db da sala B. sala A possui uma quantidade
+A (10000) de baloes e sala b tem B (10000). quer saber qual o minimo de distancia a ser percorrida para entregar baloes para todos os times.
+    - ordena os times em ordem decrescente pela maior diferenca de distancias, e entao satifaz cada um nessa ordem 
+
+4815 (kids wishes): dfs com ciclo, e nao é DAG, porque queremos ciclo no sentido da figura.
+    - dado k crianças (3 <= k <= 1e9) e w wishes (0 <= w <= 1e5) quero saber se é possível montar uma roda de crianças satisfazendo os desejos 
+de todas elas. Cada criança tem no máximo 2 desejos. 
+    - propriedade a ser mantida: cada criança deve sentar entre duas outras criancas.
+    Então é preciso verificar se nao acontece as seguintes situacoes:
+1) uma criança deseja sentar do lado de duas outras crianças, e existe outra criança diferete das anteriores que deseja sentar com a primeira.
+Se for satisfazer todas nao vai preservar a propriedade acima.
+2) se tiver um ciclo de criancas, esse ciclo deve contar com todas as criancas, senao nao preserva a propriedade acima.
+    O problema é uma DAG, mas como se faz uma funcao para contar os vértices em um ciclo, é importante que não tenha arestas múltiplas. 
+Então se usa um set.
+    Para verificar primeira situação basta ver se o tamanho da lista de adjacência de alguma criança é maior que 2.
+    Para verificar a segunda, basta dividir em dois casos. Se tiver apenas árvores então é possível formar o círculo. Se tiver ciclo então o ciclo
+tem que ter as k crianças.
+    
