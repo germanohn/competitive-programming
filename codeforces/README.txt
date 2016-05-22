@@ -7,6 +7,8 @@
        (two pointers)
     D:
 
+-educational 12 () foi bem daora (ver o d bem legal):
+
 -contest 335 (606)
     A: dadas tres cores tenho uma quantidade de cada e uma quantidade que preciso. sabendo que posso transformar duas cores
 iguais em uma cor qualquer, quero saber se é possivel conseguir o que preciso.
@@ -43,6 +45,15 @@ o número de intervalos em que ela é dominante. cor dominante é quando em um i
 os intervalos que comecam em i crescentemente. Dessa forma ao aumentar o intervalo so ira incrementar as frequencias e dai comparo com o maior do intervalo anterior
     D: ad-hoc. dado n vertices, k arestas, a, b, c, d. 
 
+
+-591-b.cpp Rebranding:
+     WANT: dado n (tamanho da strings), m (numero de trocas), cada troca envolve duas letras a e b, e envolve
+     trocar todos os a's da newest string por b's e contrario tambem. quer a string final apos m trocas
+     SOLUCAO: as posicoes da string estao divididas em grupos. No comeco cada letra é dona de um grupo. basta
+     saber no final qual letra vai ser a dona de um determinado grupo de posicoes.
+     NÍVEL: Médio
+     IMPLEMENTAÇÃO: Fácil
+     QUALIDADE: MUITO LEGAL, INTERESSANTE
 
 
 
