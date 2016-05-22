@@ -7,13 +7,42 @@
        (two pointers)
     D:
 
--educational 12 () foi bem daora (ver o d bem legal):
+-contest 335 (606)
+    A: dadas tres cores tenho uma quantidade de cada e uma quantidade que preciso. sabendo que posso transformar duas cores
+iguais em uma cor qualquer, quero saber se é possivel conseguir o que preciso.
+       SOLUCAO: guarda duas variaveis: has e need. no final veremos qual é maior. entao anda linear nas 3, pra cada cor ve se ela
+contribui para has ou need.
+    C: dada uma sequencia de n inteiros, quero ordenar ela no minimo numero de operaçoes. É permitido pegar qualquer elemento e 
+coloca-lo no comeco ou no final da sequencia.
+       SOLUCAO: ideia é que quero minimizar o número de elementos que precisarão se mover no vetor. Isso é equivalente a maximizar o número de elementos que ficarão
+parados. Então a sacada é ver quando uma cadeia de elementos não é alterada. É quando os elementos delas estão em ordem crescente 
+na sequência e sem pulos. Ex: 3 6 4 5 1 2, nela 3 4 5 formam uma cadeia dessas. Então o problema vira achar a lis (longest increasing
+substring) em um vetor que guarda pra cada elemento a posição que ele aparece na sequencia. Veja que substring e nao subsequence.
+Let’s suppose we removed from the array all that elements we would move. What remains? The sequence of the numbers in a row: a, a+1, …, b. The length of this 
+sequence must be maximal to minimize the number of elements to move. Consider the array pos, where pos[p[i]] = i. Look at it’s subsegment pos[a], pos[a+1], …, pos[b]
+. This sequence must be increasing and its length as mentioned above must be maximal.
+So we must find the longest subsegment of pos, where pos[a], pos[a+1], …, pos[b] is increasing.
+       Importante: se pudesse elementos repetidos entao nao pode ser guloso, seria uma dp.
 
--591-b.cpp Rebranding:
-    WANT: dado n (tamanho da strings), m (numero de trocas), cada troca envolve duas letras a e b, e envolve
-trocar todos os a's da newest string por b's e contrario tambem. quer a string final apos m trocas
-    SOLUCAO: as posicoes da string estao divididas em grupos. No comeco cada letra é dona de um grupo. basta 
-saber no final qual letra vai ser a dona de um determinado grupo de posicoes.
-    NÍVEL: Médio
-    IMPLEMENTAÇÃO: Fácil
-    QUALIDADE: MUITO LEGAL, INTERESSANTE
+-contest 351 (673)
+    A: ad-hoc. tem um jogo com 90 minutos, sendo que alguns deles sao interessantes, se passar 15 minutos sem minutos interessantes, ele
+desliga a tv. Ele dara n minutos interessantes, quer saber quantos minutos o cara vai assistir de jogo.
+       SOLUCAO: faz um for que recebe o minuto atual mais interessante (cur) e compara com o anterior mais interessante (prev) 
+    B: ad-hoc. dado n problemas quero separar em div1 e div2 seguindo algumas regras. quero saber quantas possibilidades existe. Regras: 
+problemas similares nao podem estar na mesma divisao; nao pode existir nenhum problema na div2 melhor que na div1; as divisoes nao podem 
+estar vazias; cada problema so pode estar em uma divisao. 
+       SOLUCAO: a ideia é primeiro e ver os caras que necessariamente tem que estar em cada divisao. Isso se ve, analisando os similares. suponha que a < b
+sao similares, entao a tem que estar em div2 e b em div1. Feito isso, os restantes podem estar tanto em div1 como em div2. Esse numero sera a diferenca
+entre o menor da div1 mi1 e o maior da div2 mx2. Cuidado para inicializar mi1 = n e mx2 = 1. E quando a diferenca der menor igual a zero tem que ser 0 a rta
+Eu tinha feito com um vetor de mark e um set. Como a resposta sera mi1 - mx2 entao se tiver um elemento que esta tanto 
+na div1 quanto na div2 entao quando fizer a conta a rta sera 0, logo nao preciso do set. Como cada elemento que nao tinha similares (sobrou) contribui com uma
+possibilidade entao nao precisa marcar os que ja foram usados pra saber os que nao foram, basta fazer a diferenca mesmo.
+    C: ad-hoc. dado n baloes (1 <= n <= 5000) e um sequencia de n numeros com as cores de cada balao (cores tambem de 1 a 5000), imprima pra cada cor (1 a n) 
+o número de intervalos em que ela é dominante. cor dominante é quando em um intervalo o numero dela aparece mais vezes. 
+       SOLUCAO: Existem n*(n+1)/2 intervalos, pra cada i existem n-i intervalos partindo dele com ele como comeco. entao o que se faz é analisar pra cada i todos 
+os intervalos que comecam em i crescentemente. Dessa forma ao aumentar o intervalo so ira incrementar as frequencias e dai comparo com o maior do intervalo anterior
+    D: ad-hoc. dado n vertices, k arestas, a, b, c, d. 
+
+
+
+

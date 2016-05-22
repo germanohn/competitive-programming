@@ -14,4 +14,23 @@ a sum of two distinct numbers from the set, which is closest to the query number
 anda nesse vetor de somas ordenadas e acha entre quais somas a query esta. entao ve qual a mais proxima e imprime.
 	   NÍVEL: 2
 
+146: ID codes
+       next_permutation: next_permutation (iterator para comeco da sequencia, iterator para final da sequencia)
+Return value: true if the function could rearrange the object as a lexicographicaly greater permutation.
+Otherwise, the function returns false to indicate that the arrangement is not greater than the previous,
+The first such-sorted possible permutation (the one that would compare lexicographically smaller to all other permutations)
+is the one which has all its elements sorted in ascending order, and the largest has all its elements sorted in descending order.
+but the lowest possible (sorted in ascending order).
+
+Rearranges the elements in the range [first,last), in such a way that the element at the nth position is the element that would be in that position in a sorted sequence.
+
+10107: what is the median?
+    want: quer achar o elemento que estaria no centro da sequencia se ela estivesse ordenada.
+    nth_element (ponteiro pro primeiro da sequencia, iterator apontando pra localizacao do elemento no range, ponteiro pro ultimo elemento da
+sequencia nao inclusivo)
+Rearranges the elements in the range [first,last), in such a way that the element at the nth 
+position is the element that would be in that position in a sorted sequence.
+The other elements are left without any specific order, except that none of the elements preceding nth are greater than it, 
+and none of the elements following it are less
+
 

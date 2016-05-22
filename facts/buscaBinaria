@@ -1,0 +1,15 @@
+iterativa
+
+recursiva
+
+lower_bound (ver 7484 live_archive)
+
+upper_bound
+
+exemplo: procurando valor em funcao (entao é double e tem que cuidar com a precisao que o problema quer)
+
+busca binaria na rta
+
+TESTE pra saber calcular o mid: 
+    pega sempre o caso 0, 1 e ve o que acontece pegando o floor ou o ceiling. Em um dos casos sempre vai entrar
+em loop infinito

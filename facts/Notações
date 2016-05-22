@@ -1,0 +1,15 @@
+anterior: prev
+proximo: nx
+atual: cur
+
+esquerda: l
+direita: r
+
+lower: l
+upper: u
+mid: m
+
+-dp
+me[][]
+vis[][]
+turn

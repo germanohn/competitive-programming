@@ -19,3 +19,14 @@ s[i]: é o conteudo do que tem no endereco da memoria apontada por var
 obs: malloc (ver pagina do pf http://www.ime.usp.br/~pf/algoritmos/aulas/aloca.html)
 A função  malloc  (o nome é uma abreviatura de memory allocation) aloca um bloco de bytes consecutivos na memória RAM (= random access memory) do computador e devolve o endereço desse bloco.  O número de bytes é especificado no argumento da função. No seguinte fragmento de código, malloc aloca 1 byte
 Para alocar um objeto que ocupa mais de 1 byte, é preciso recorrer ao operador sizeof, que diz quantos bytes o tipo de objeto desejado tem:
+
+
+JAVA
+Cuidado com java com coisas do tipo. temos digamos dois vetores word e origin
+se fizer word = origin, entao terei que word e origin farao referencia ao mesmo array, o que 
+pode dar problema pois que tudo que fizer em um mudara o outro (exemplo se sortar o word vou sortar o origin, ver ep do yoshi FasterWordLadders
+que eu fiz isso e passei trabalho)
+ja se fizer
+for (int i = 0; i < tam; i++) 
+    word[i] = origin[i]
+o que vou ter serao, word e origin fazendo referencia a dois vetores diferentes que no momento possuem os mesmos valores
