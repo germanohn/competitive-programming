@@ -6,3 +6,14 @@
     C: vetor de 0, 1, quer a maior sequencia com k zeros
        (two pointers)
     D:
+
+-educational 12 () foi bem daora (ver o d bem legal):
+
+-591-b.cpp Rebranding:
+    WANT: dado n (tamanho da strings), m (numero de trocas), cada troca envolve duas letras a e b, e envolve
+trocar todos os a's da newest string por b's e contrario tambem. quer a string final apos m trocas
+    SOLUCAO: as posicoes da string estao divididas em grupos. No comeco cada letra é dona de um grupo. basta 
+saber no final qual letra vai ser a dona de um determinado grupo de posicoes.
+    NÍVEL: Médio
+    IMPLEMENTAÇÃO: Fácil
+    QUALIDADE: MUITO LEGAL, INTERESSANTE
