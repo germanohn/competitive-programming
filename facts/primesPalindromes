@@ -1,0 +1,18 @@
+Primes:
+- quantidade de primos menores ou iguais a n é aproximadamente n/log n (the prime number theorem)
+- o n-ésimo primo é aproximandamente n log n
+
+funcoes pra achar primos: sieve ()
+
+Palindromes:
+
+next palindrome:
+    Temos tres casos:
+- se todos os digitos sao 9: coloca 1 nas pontas e 0's no meio
+- se é palindromo: aumenta o digito do meio (se for de tamanho impar), se for de tamanho par aumenta os dois do meio. E entao 
+propaga para direita e esquerda
+- se nao é palindrome: parte do meio pra esquerda do numero e ve o primeiro diferente da parte direita.
+se o numero for maior que o correspondente na direita entao so reflete essa parte esquerda na direita 
+se o numero for menor que o correspondente na direita entao reflete essa parte esquerda na direita e aumenta no meio um e propaga
+
+como contar os palindromes:

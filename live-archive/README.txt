@@ -55,4 +55,12 @@ Então se usa um set.
     Para verificar primeira situação basta ver se o tamanho da lista de adjacência de alguma criança é maior que 2.
     Para verificar a segunda, basta dividir em dois casos. Se tiver apenas árvores então é possível formar o círculo. Se tiver ciclo então o ciclo
 tem que ter as k crianças.
-    
+
+4493 (that is your queue): Two Pointers e centralizacao em um vetor
+    - dada uma fila com P pacientes (1 <= P <= 1e9) e C comandos (1 <= 1e3). Os comandos podem ser 'N' (que pede para o proximo da fila vir) e 
+'E x' que significa que o paciente x deve ir para o comeco da fila. comecando a fila com os paciente 1 na frente, depois o 2 e assim por diante
+até P, ele quer saber quais serão os pacientes atendidos e a ordem em que foram atendidos, segundo os comandos dados.
+    SOLUCAO: como temos no maximo 1000 comandos, entao fixa dois ponteiros l, r para o comeco e o final da fila respectivamente e coloca os primeiros
+1000 pacientes em um vetor de l = 1000, r = l + (p % 1001). se receber um comando 'N' imprime v[l], faz v[r++] = v[l++], se 'E x' entao coloca x na frente
+da fila, diminui l e r e se x estiver em uma posicao pos entre os pacientes l (inclusive) e r (exclusive) no vetor, entao desloca todos os pacientes no vetor de 
+pos+1 ate r-1, uma posicao para a esquerda.     

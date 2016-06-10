@@ -55,5 +55,8 @@ os intervalos que comecam em i crescentemente. Dessa forma ao aumentar o interva
      IMPLEMENTAÇÃO: Fácil
      QUALIDADE: MUITO LEGAL, INTERESSANTE
 
-
-
+-569-c.cpp (Primes or Palindromes): maior quantidade de primos ate um numero n é n/log n, de palindromes é 
+    Want: quer saber qual o maior valor de n tal que a quantidade de primos ate ele é menor igual a quantidade de palindromes ate ele vezes um dado A, em que
+A = p/q, com 1 <= p, q <= 42.
+    Solucao: basta calcular os primos ate 10000007, e entao faz uma soma acumulada de primos e de palindromos e entao faz uma pesquisa linear de 1 ate MAX pra
+ver qual o maior n que satisfaz a propriedade. Importante: por causa o do A, a funcao nao é crescente logo nao se pode usar busca binaria.

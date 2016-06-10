@@ -17,7 +17,7 @@ typedef pair<int, int> pii;
 // 1
 void sieve () {
     p[1] = true;
-    for (int i = 2; i < sieve_size; i++) {
+    for (int i = 2; i*i < sieve_size; i++) {
         if (!p[i]) 
             for (int j = i*i; j < sieve_size; j += i) 
                p[j] = true; 
