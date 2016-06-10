@@ -8,12 +8,26 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> pii;
 
+const int MAX = 1e5 + 5;
+
+int n;
+int v[MAX];
+map<ll, int> m;
+
 int main () {
-    int n;
     scanf ("%d", &n);
+    ll acc = 0;
     for (int i = 0; i < n; i++) {
         scanf ("%d", &v[i]);
+        acc += (ll) v[i];
+        m[acc]++;
     }
-
+    int ans = INT_MAX;
+    acc = 0;
+    for (int i = 0; i < n; i++) {
+        ans = min (ans, n-m[acc]);
+        acc += v[i];
+    }
+    printf ("%d\n", ans);
 }
 
