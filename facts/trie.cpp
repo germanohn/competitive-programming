@@ -1,10 +1,13 @@
+// número de vértices na trie é: quantidade de strings*(tamanho da string)
+// porque o tamanho da string é a quantidade de prefixos diferentes de uma string
+
 // calcular o número de vértices da trie no pior caso
 const int MAX = ;
 
 int k, lenS;
 int trie[MAX][tamanhoAlfabeto], val[MAX];
 
-/* monta a trie */
+/* monta a trie: recursivo */
 void add (int idx, int idxs) {
     if (idxs == lenS) {
         val[idx] = "faz alguma coisa desejada para identificar prefixos";
@@ -18,4 +21,12 @@ void add (int idx, int idxs) {
     add (trie[idx][s[idxs]], idxs+1);
 }
 
-
+/* monta a trie: iterativo */
+void add (int val) {
+    int v = 0;
+    for (int i = pos_val; i >= 0; i--) {
+        if (trie[v][((val >> i) & 1)] == 0)
+            trie[v][((val >> i) & 1)] = k++;
+        v = trie[v][((val >> i) & 1)];
+    }
+}

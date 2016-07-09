@@ -64,3 +64,5 @@ até P, ele quer saber quais serão os pacientes atendidos e a ordem em que fora
 1000 pacientes em um vetor de l = 1000, r = l + (p % 1001). se receber um comando 'N' imprime v[l], faz v[r++] = v[l++], se 'E x' entao coloca x na frente
 da fila, diminui l e r e se x estiver em uma posicao pos entre os pacientes l (inclusive) e r (exclusive) no vetor, entao desloca todos os pacientes no vetor de 
 pos+1 ate r-1, uma posicao para a esquerda.     
+
+4221 (walk in the park): line sweep
