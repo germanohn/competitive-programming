@@ -1,0 +1,3 @@
+- COLOCAR INFINITO NAS PONTAS PARA FACILITAR IMPLEMENTAÇAO
+    - no caso do mergesort, em que colocando inf no final de um vetor faço o merge em um while
+    - no caso do problema e.cpp do dia3 do camp1usp em que tinha um set e precisava procurar pelos vizinhos de um elemento
