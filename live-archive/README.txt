@@ -66,3 +66,5 @@ da fila, diminui l e r e se x estiver em uma posicao pos entre os pacientes l (i
 pos+1 ate r-1, uma posicao para a esquerda.     
 
 4221 (walk in the park): line sweep
+
+4230 (teleport out): passeio aleatorio no grid, valor esperado
