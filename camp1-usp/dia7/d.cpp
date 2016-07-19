@@ -17,14 +17,14 @@ int ans[MAX], v[MAX];
 
 void lexic (int l, int r) {
     if (l == r) return;
-    sort (v+l, v+r);
-    int tmp, m = (l+r)/2;
-    tmp = v[m], v[m] = v[r-1], v[r-1] = tmp;
+    sort (v+l, v+r+1);
+    int m = (l+r)/2;
+    swap (v[m], v[r-1]);
     cont += r-l;
     lexic (l, m), lexic (m+1, r);
 }
 
-int fexp (ll x, ll y) {
+ll fexp (ll x, ll y) {
     if (y == 0) return 1; 
     else if (y == 1) return x;
     else if (y % 2 == 0) return (fexp ((x*x) % mod, y/2)) % mod;
@@ -39,11 +39,12 @@ ll fatorial (ll x) {
 
 ll calc (ll n) {
     if (n == 0 || n == 1) return 1;
-    ll num, deno, comb;
+    ll num, deno, comb, ans;
     num = fatorial (n-2);
     deno = ((fatorial ((n-2)/2) * fatorial (n-2 - (n-2)/2))) % mod;
     comb = (num * fexp (deno, mod-2)) % mod;
-    return 2 * (((calc (n/2) * calc ((n+1)/2) % mod) * comb) % mod);
+    ans = (calc (n/2) * calc ((n+1)/2)) % mod; 
+    return (2 * ((ans * comb) % mod)) % mod;
 }
 
 int main () {
@@ -61,25 +62,3 @@ int main () {
 }
 
 
-
-
-/*void merge (int l, int r) {
-    int m = (l+r)/2, k = 0;
-    int i = l, j = m+1;
-    while (i <= m && j <= r) {
-        cont++;
-        if (v[i] < v[j]) aux[k++] = v[i++];
-        else aux[k++] = v[j++]
-    }
-    while (i <= m) aux[k++] = v[i++];
-    while (j <= r) aux[k++] = v[j++];
-    for (i = l; i <= r; i++) v[i] = aux[i-l];
-}
-
-void mergesort (int l, int r) {
-    if (l == r) return;
-    int m = (l+r)/2;
-    mergesort (l, m);
-    mergesort (m+1, r);
-    merge (l, r);
-}*/
