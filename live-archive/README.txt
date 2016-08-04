@@ -68,3 +68,7 @@ pos+1 ate r-1, uma posicao para a esquerda.
 4221 (walk in the park): line sweep
 
 4230 (teleport out): passeio aleatorio no grid, valor esperado
+
+2217 (buffer manager): two pointers
+
+4643 (twenty questions): percorrer grid
