@@ -72,3 +72,7 @@ pos+1 ate r-1, uma posicao para a esquerda.
 2217 (buffer manager): two pointers
 
 4643 (twenty questions): percorrer grid
+
+3969 (And Now, a Remainder from Our Sponsor): teorema chines dos restos
+
+2930 (Minimizing Maximizer): recursao e two pointers

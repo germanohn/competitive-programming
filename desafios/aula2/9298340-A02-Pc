@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+#define mp make_pair
+#define pb push_back
+#define ff first
+#define ss second
+#define what_is(x) cerr << #x << " is " << x << endl;
+using namespace std;
+
+typedef long long ll;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+
+const double eps = 1e-9;
+const int inf = INT_MAX;
+/////////////////0123456789
+const int MAXN = 100005;
+const int modn = 1000000007;
+
+int c, t;
+ll raio[MAXN];
+
+ll dis (ll x, ll y) {
+    return x*x + y*y;
+}
+
+int bb (ll d) {
+    ll l, h, m;
+    l = 0, h = c-1;
+    while (l != h) {
+        m = (l+h)/2;
+        if (raio[m] >= d) h = m;
+        else l = m+1;
+    }
+    if (raio[l] < d) return l+1;
+    return l;
+}
+
+int main() {
+    scanf ("%d %d", &c, &t);
+    for (int i = 0; i < c; i++) {
+        scanf ("%lld", &raio[i]);
+        raio[i] *= raio[i];
+    }
+    sort (raio, raio+c);
+    ll ans = 0;
+    for (int i = 0; i < t; i++) {
+        int x, y;
+        scanf ("%d %d", &x, &y);
+        ll d = dis (x, y);
+        int pos = bb (d); 
+        ans += c-pos;
+    }
+    printf ("%lld\n", ans);
+}
