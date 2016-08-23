@@ -33,4 +33,6 @@ position is the element that would be in that position in a sorted sequence.
 The other elements are left without any specific order, except that none of the elements preceding nth are greater than it, 
 and none of the elements following it are less
 
-
+10298: Power Strings
+    dada uma string s, achar a menor substring de s que a gera
+    itera ate achar um letra igual a primeira letra da string e que a parte formada seja um divisor da string
