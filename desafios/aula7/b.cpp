@@ -10,6 +10,19 @@ typedef pair<int, int> pii;
 // ATENCAO: cuidado com as variáveis dadas no exercício, nao as reutilize
 
 
+void solve (int i, int j) {
+
+}
+
+void sieve () {
+    for (int i = 2; i < MAX; i++) {
+        
+    }
+}   
+
 int main () {
+    sieve ();
+    int k;
+    scanf ("%d", &k);
 }
 
