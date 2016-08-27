@@ -9,3 +9,6 @@ rmqsq - range minimum query
 
 csumq - cumulative sum query
     sparse table de soma dos intervalos
+
+lca_st - lca
+    lca com sparse table
