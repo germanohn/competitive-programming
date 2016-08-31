@@ -60,3 +60,10 @@ os intervalos que comecam em i crescentemente. Dessa forma ao aumentar o interva
 A = p/q, com 1 <= p, q <= 42.
     Solucao: basta calcular os primos ate 10000007, e entao faz uma soma acumulada de primos e de palindromos e entao faz uma pesquisa linear de 1 ate MAX pra
 ver qual o maior n que satisfaz a propriedade. Importante: por causa o do A, a funcao nao é crescente logo nao se pode usar busca binaria.
+
+contest 711:
+    a: so fazer
+    b: so fazer
+    c: dp facil
+    d: de contagem em grafos, mas estranho, nao entendi direito
+    

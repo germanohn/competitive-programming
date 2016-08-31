@@ -29,7 +29,7 @@ void dfs (int u, int p) {
             low[u] = min (low[u], low[v]);
             if (low[v] >= d[u]) 
                 any = true;
-            if (low[v] > d[u]) 
+            if (low[v] == d[v]) 
                 uv é ponte;
         } else if (v != p) {
             low[u] = min (low[u], d[v]);
