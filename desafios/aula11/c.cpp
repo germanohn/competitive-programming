@@ -14,39 +14,59 @@ typedef pair<int, double> pid;
 const double eps = 1e-9;
 const int inf = INT_MAX;
 /////////////////0123456789
-const int MAXN = 10004;
+const int MAX = 35;
 const int modn = 1000000007;
 
-int n, m, k;
+int n, m, k, arbritage;
+double d[MAX][MAX];
+map<string, int> coin;
 
-void dfs (int u, double fee) {
-    seen[u] = true;
-    for (int 
+void floyd () {
+
+    for (int l = 0; l < n; l++) 
+        for (int i = 0; i < n; i++) 
+            for (int j = 0; j < n; j++) { 
+                d[i][j] = max (d[i][j], d[i][l] * d[l][j]);
+            }
 }
 
 int main() {
+    int cont = 1;
     while (scanf (" %d", &n)) {
         if (n == 0) break;
+        coin.clear ();
+        for (int i = 0; i < n; i++) 
+            for (int j = 0; j < n; j++) 
+                d[i][j] = 0.0;
+        arbritage = false;
 
         char s1[20], s2[20];
-        int k = 1;
 
-        memset (d, 1, sizeof d);
-
-        scanf (" %d", &coin);
         for (int i = 0; i < n; i++) {
             scanf (" %s", s1);
-            if (coin[s1] == 0)
-               coin[s1] = k++; 
+            string s = s1;
+            coin[s] = i; 
         }
 
         double fee;
+        scanf (" %d", &m);
         for (int i = 0; i < m; i++) {
-            scanf (" %s %d %s", s1, &fee, s2);
-            adj[coin[s1]].pb (pid (coin[s2], fee));
+            scanf (" %s %lf %s", s1, &fee, s2);
+            string a = s1, b = s2;
+            d[coin[a]][coin[b]] = fee;
         }
 
         floyd ();
+
+        for (int i = 0; i < n; i++) {
+            if (d[i][i] > 1.) arbritage = true;
+        }
+
+        if (arbritage) {
+            printf ("Case %d: Yes\n", cont++);
+        } else {
+            printf ("Case %d: No\n", cont++);
+        }
     }
 }
 

@@ -28,13 +28,14 @@ void bb () {
         if (i % 2 == 0) l = bottom_x, r = up_x;
         else l = bottom_y, r = up_y;
         while (l != r) {
-            printf ("i %d l %d mid %d r %d\n", i, l, mid, r);
-            mid = (l+r+1)/2;
+            //printf ("i %d l %d mid %d r %d\n", i, l, mid, r);
+            if (i == 2 || i == 3) mid = (l+r+1)/2;
+            else mid = (l+r)/2;
             print (i);
             fflush (stdout);
             scanf ("%d", &qtd);
             if (qtd >= 1) {
-                if (i == 1) printf ("l %d mid %d r %d\n", l, mid, r);
+                //if (i == 1) printf ("l %d mid %d r %d\n", l, mid, r);
                 if (i == 2 || i == 3) l = mid;
                 else r = mid;
             } else {
@@ -60,7 +61,8 @@ void bb () {
         if (i % 2 == 0) l = bottom_x, r = up_x;
         else l = bottom_y, r = up_y;
         while (l != r) {
-            mid = (l+r+1)/2;
+            if (i == 0 || i == 1) mid = (l+r+1)/2;
+            else mid = (l+r)/2;
             print ((i+2) % 4);
             fflush (stdout);
             scanf ("%d", &qtd);
