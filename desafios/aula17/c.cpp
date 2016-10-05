@@ -1,56 +1,57 @@
 #include <bits/stdc++.h>
-#define mp make_pair
-#define pb push_back
 #define ff first
-#define ss second
-#define what_is(x) cerr << #x << " is " << x << endl;
+#define ss second 
+#define pb push_back
+#define mp make_pair
+#define debug(args...) fprintf (stderr, args)
 using namespace std;
-
 typedef long long ll;
-typedef pair<int,int> pii;
-typedef pair<ll,ll> pll;
+typedef pair<int, int> pii;
+// ATENCAO: cuidado com as variáveis dadas no exercício, nao as reutilize
 
-const double eps = 1e-9;
-const int inf = INT_MAX;
-/////////////////0123456789
-const int MAX = 100004;
-const int modn = 1000000007;
+const int MAX = 100005;
 
 int n;
 ll v[MAX], freq[MAX];
 ll me[MAX][3];
 
-ll dp (int i, ant_del) {
+ll dp (int i, int has_to) {
     if (i == n) return 0;
-    if (me[i][ant_del] != -1) return me[i][ant_del];
+    if (me[i][has_to] != -1) return me[i][has_to];
 
     ll ans;
-
-    int nx = i+freq[v[i]];
-    if (!ant_del) {
+    int nx = i + freq[v[i]];
+    if (has_to) {
         ans = freq[v[i]] * v[i];
-        if (v[nx] == v[i]+1) {
-            ans += dp (nx + freq[v[i+freq[v[i]]]]);
+        if (v[nx] == v[i] + 1) {
+            ans += dp (nx + freq[v[nx]], 0);
         } else {
-            ans += dp (nx, 0); 
+            ans += dp (nx, 0);
         }
     } else {
-        
+        if (v[nx] == v[i] + 1) {
+            ans = max (freq[v[i]] * v[i] + dp (nx + freq[v[nx]], 0), 
+                       dp (nx, 1));
+        } else {
+            ans = freq[v[i]] * v[i] + dp (nx, 0);
+        }
     }
 
-
-    return me[i][ant_del] = ans;
+    return me[i][has_to] = ans;
 }
 
-int main() {
+int main () {
     scanf ("%d", &n);
     memset (me, -1, sizeof me);
     for (int i = 0; i < n; i++) {
-        scanf ("%d", &v[i]);
+        scanf (" %d", &v[i]);
         freq[v[i]]++;
     }
+
+    v[n] = MAX - 1;
+
     sort (v, v+n);
-    v[n] = -1;
-    printf ("%lld\n", dp (0));
+
+    printf ("%lld\n", dp (0, 0));
 }
 
