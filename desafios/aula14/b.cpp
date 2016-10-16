@@ -17,55 +17,43 @@ const int MAXN = 10004;
 const int modn = 1000000007;
 
 int cube[10][5];
-bool f, ok;
-map<ll, pii> t;
+vector<ll> side;
 
 ll dis (ll a, ll b, ll c, ll x, ll y, ll z) {
     return (a-x)*(a-x) + (b-y)*(b-y) + (c-z)*(c-z);
 }
 
 bool verify () {
-    int k = 1, cont = 0, acc = 0;
     for (int i = 0; i < 8; i++) {
-        cont = 0;
-        t.clear ();
+        side.clear ();
         for (int j = 0; j < 8; j++) {
-            if (j != i) {
-                ll val = dis (cube[i][0], cube[i][1], cube[i][2],
-                              cube[j][0], cube[j][1], cube[j][2]);                        
-                if (val == 0) return false;
-                if (t[val] == pii (0, 0)) 
-                    t[val] = pii (k++, 1), cont++;
-                else {
-                    t[val].ss++;
-                }
-            }
+            if (i == j) continue;
+            side.pb (dis (cube[i][0], cube[i][1], cube[i][2],
+                          cube[j][0], cube[j][1], cube[j][2]));
         }
-        if (cont == 3) acc++;
-    }   
+        sort (side.begin (), side.end ());
 
-    if (acc == 8) {
-        int tres = 0, um = 0, pos = 0;
-        bool f = true;
-        for (map<ll, pii>::iterator it = t.begin (); it != t.end (); it++) {
-            pos++;
-            if (it->ss.ss == 3)
-                tres++;
-            else if (it->ss.ss == 1) {
-                um++; 
-                if (pos != 3) f = false;
-            }
-        }
-
-        if (!f || tres != 2 || um != 1) 
+        if (side[0] != side[1] || side[0] != side[2] || 
+            side[3] != side[4] || side[3] != side[5] ||
+            side[3] != 2 * side[0] || side[6] != 3 * side[0] ||
+            side[0] == side[3] || side[0] == side[6]) 
             return false;
-        return true;
     }
-    return false;
+
+    return true;
 }   
 
 bool solve (int i) {
     if (i == 8) {
+        /*printf ("\n");
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 3; j++) {
+                printf ("%d ", cube[i][j]);
+            }
+            printf ("\n");
+        }
+        printf ("\n");*/
+
         if (verify ()) {
             printf ("YES\n");
             for (int i = 0; i < 8; i++) {
@@ -79,7 +67,7 @@ bool solve (int i) {
         return false;
     }
     bool ans = false;
-    for (int j = 0; !ans && j < 3; j++) {
+    for (int j = 0; !ans && j < 6; j++) {
         if (j != 0) 
             next_permutation (cube[i], cube[i]+3);
         ans = solve (i+1);
@@ -94,8 +82,6 @@ int main() {
             scanf (" %d", &cube[i][j]);
         }
     }  
-
-    ok = false;
 
     if (!solve (0)) 
         printf ("NO\n");
