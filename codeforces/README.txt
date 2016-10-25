@@ -67,3 +67,11 @@ contest 711:
     c: dp facil
     d: de contagem em grafos, mas estranho, nao entendi direito
     
+
+432-a.cpp: greedy, implementation (nivel 1)
+
+110-a.cpp: implementation (nivel 1)
+
+141-a.cpp: vetor de freq
+
+200-b.cpp: porcentagem
