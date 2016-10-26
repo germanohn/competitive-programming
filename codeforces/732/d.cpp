@@ -4,63 +4,50 @@ typedef long long ll;
 
 const int MAX = 100005;
 
-int n, m;
-int bit[MAX], v[MAX], a[MAX];
-int seen[MAX];
+int n, m, l, r;
+int d[MAX], a[MAX], seen[MAX];
 
-void update (int idx, int val) {
-    for (int i = idx; i <= n; i += i&-i)
-        bit[i] += val;
-}
+bool can_pass(int last_day) {
+    int acc_prep, cont;
+    acc_prep = cont = 0;
 
-int query (int idx) {
-    int sum = 0;
-    for (int i = idx; i > 0; i -= i&-i)
-        sum += bit[i];
-    return sum;
+    for (int i = 0; i <= n; i++) 
+        seen[i] = 0;
+
+    for (int i = last_day; i >= 0; i--)
+        if (d[i] != 0 && seen[d[i]] == 0) seen[d[i]] = i, cont++;
+
+    if (cont < m) return false;
+
+    for (int i = 0; i <= last_day; i++) {
+        if (d[i] != 0 && seen[d[i]] == i) 
+            acc_prep -= a[d[i]];
+        else 
+            acc_prep++;
+        if (acc_prep < 0) return false;
+    }
+
+    return true;
 }
 
 int main () {
-    scanf("%d %d", &n, &m);
-    for (int i = 0; i <= n; i++) 
-        bit[i] = 0;
-
-    for (int i = 0; i < MAX; i++)
-        seen[i] = -1;
-    
+    scanf(" %d %d", &n, &m);
     for (int i = 0; i < n; i++) 
-        scanf("%d", &v[i]);
+        scanf(" %d", &d[i]);
 
-    int acc_prep = 0;
-    for (int i = 1; i <= m; i++) {
-        scanf("%d", &a[i]);
-        acc_prep += a[i];
+    for (int i = 1; i <= m; i++) 
+        scanf(" %d", &a[i]);
+
+    l = 0, r = n - 1;
+    while (l < r) {
+        int mid = (l + r) / 2;
+        if (can_pass(mid))
+            r = mid;
+        else 
+            l = mid + 1;
     }
 
-    int qtd_seen = 0;
-    for (int i = 0; i < n; i++) {
-        if (v[i] != 0) {
-            if (seen[v[i]] == -1) {
-                update(i + 1, a[v[i]]);
-                seen[v[i]] = i;
-                qtd_seen++;
-            } else {
-                update(seen[v[i]] + 1, -1);
-                seen[v[i]] = i;
-            }
-        } else {
-            update(i + 1, -1);
-        }
-
-        if (qtd_seen == m && i + 1 - acc_prep >= m) {
-            int tot;
-            tot = query(i + 1);
-            if (tot <= 0) {
-                printf("%d\n", i + 1);
-                return 0;
-            }
-        }
-    }
-    printf("-1\n");
+    if (can_pass(l)) printf("%d\n", l + 1);
+    else printf("-1\n");
 }
 

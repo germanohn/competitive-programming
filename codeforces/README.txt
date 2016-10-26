@@ -75,3 +75,5 @@ contest 711:
 141-a.cpp: vetor de freq
 
 200-b.cpp: porcentagem
+ 
+224-b.cpp: two pointers (importante)
