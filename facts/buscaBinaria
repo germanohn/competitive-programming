@@ -13,3 +13,9 @@ busca binaria na rta
 TESTE pra saber calcular o mid: 
     pega sempre o caso 0, 1 e ve o que acontece pegando o floor ou o ceiling. Em um dos casos sempre vai entrar
 em loop infinito
+
+Problems: 
+
+- 732-d.cpp: minimiza (lower_bound) resposta (chuta um valor e vê se é possível)
+
+- problema da seletiva do Kawakami

@@ -1,50 +1,41 @@
 #include<bits/stdc++.h>
 #define x first
 #define y second
-#define int long long 
 using namespace std;
-typedef pair<int, int> pii;
+typedef long long ll;
+typedef pair<ll, ll> pll;
 
-const int MAX = 100005;
+const int MAX = 10005;
+const int inf = 1e9 + 1;
 
-int n, a1, b1;
-pii pto_1, pto_2;
-pii pto[MAX], ori[MAX];
+int n;
+int p[MAX];
+pll pto1, pto2;
+pll pto[MAX];
 
-int cross(pii a, pii b) {
-    return (a.x - pto_1.x) * (b.y - pto_1.y) - (a.y - pto_1.y) * (b.x - pto_1.x);
+ll cross(pll a, pll b) {
+    return ((a.x - pto1.x) * (b.y - pto1.y)) - ((a.y - pto1.y) * (b.x - pto1.x));
 }
 
-bool cmp(pii a, pii b) {
-    if (cross(a, b) < 0) return 1;
-    return 0; 
+bool cmp(int a, int b) {
+    if (cross(pto[a], pto[b]) < 0) return true;
+    return false;
 }
 
-main() {
+int main() {
+    int pos;
+    pto1.x = inf, pto1.y = inf;
     scanf(" %d", &n);
-
-    pto_1.x = 1e9 + 1;
-    for (int i = 0; i < n; i++) { 
+    for (int i = 0; i < n; i++) {
+        p[i] = i;
         scanf(" %lld %lld", &pto[i].x, &pto[i].y);
-        ori[i].x = pto[i].x, ori[i].y = pto[i].y;
-        if (pto[i].x < pto_1.x)
-            pto_1.x = pto[i].x, pto_1.y = pto[i].y;
-    }
+        if (pto[i].x < pto1.x || (pto[i].x == pto1.x && pto[i].y < pto1.y))
+            pto1.x = pto[i].x, pto1.y = pto[i].y, pos = i;    
+    } 
 
-    sort(pto, pto + n, cmp);
+    swap(p[0], p[pos]);
+    pto1 = pto[p[0]];
+    sort(p + 1, p + n, cmp);
 
-    for (int i = 0; i < n; i++) {
-        if (i - 1 == n - i - 1) {
-            pto_2.x = pto[i].x, pto_2.y = pto[i].y;
-            break;
-        }
-    }
-
-    for (int i = 0; i < n; i++) {
-        if (ori[i].x == pto_1.x && ori[i].y == pto_1.y)
-            printf("%lld ", i + 1);
-        if (ori[i].x == pto_2.x && ori[i].y == pto_2.y)
-            printf("%lld ", i + 1);       
-    }
-    printf("\n");
+    printf("%d %d\n", p[0] + 1, p[n/2] + 1);
 }

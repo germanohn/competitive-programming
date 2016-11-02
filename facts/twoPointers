@@ -31,3 +31,8 @@ void merge (int n, int m) {
 
 Motivation Problem: Given an array having N integers, find the contiguous subarray having sum as great as possible, but not 
 greater than M. For details on the statement, refer the problem link
+
+
+Problems:
+
+224-b.cpp: encontre o menor intervalo que tem possui k elementos distintos

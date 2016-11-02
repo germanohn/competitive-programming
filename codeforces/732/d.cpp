@@ -11,8 +11,8 @@ bool can_pass(int last_day) {
     int acc_prep, cont;
     acc_prep = cont = 0;
 
-    for (int i = 0; i <= n; i++) 
-        seen[i] = 0;
+    for (int i = 0; i <= m; i++) 
+        seen[i] = -1;
 
     for (int i = last_day; i >= 0; i--)
         if (d[i] != 0 && seen[d[i]] == 0) seen[d[i]] = i, cont++;
