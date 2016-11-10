@@ -5,49 +5,60 @@ const int MAX = 100005;
 const int MAXN = 2005;
 const int MOD = 1e9 + 7;
 
-int n, m, end;
-int me[MAXN][2*MAXN];
+int n, m, soares /*aberto*/, sena/*fechado*/;
+int me[MAXN][MAXN][2];
 char s[MAX];
 
-int dp(int i, int qtd_open, bool antes) {
-    if (antes && i == end) {
-        if (qtd_open >= n - m) 
-            antes = 0;
-        else return 0;
-    }
-    if (i == n) 
-    if (me[i][qtd_open] != -1) return me[i][qtd_open];
+int dp(int i, int open, bool p_end) {
+    if (i == n - m) {
+        printf("i == n open %d p_end %d\n", open, p_end);
+        if (p_end) {
+            if (open == 0) return 1;
+            return 0;
+        } else {
+            if (open - sena == 0 && soares == 0) return 1;
+            return 0;
+        }
+    } 
+    if (me[i][open][p_end] != -1) return me[i][open][p_end];
 
     int ans = 0;
-    if (qtd_open > 0) {
-        ans = (dp(i + 1, qtd_open - 1) + dp(i + 1, qtd_open + 1)) % MOD;    
-    } else {
-        ans = dp(i + 1, qtd_open + 1);
-    }   
+    if (!p_end) {
+        if (open - sena - 1 >= 0)
+            ans = (ans + dp(i + 1, open - sena - 1 + soares, true)) % MOD;
 
-    return me[i][qtd_open] = ans % MOD;
+        if (open - sena + 1 >= 0)
+            ans = (ans + dp(i + 1, open - sena + 1 + soares, true)) % MOD;
+    }
+
+    bool f = false;
+    if (i + 1 == n - m && !p_end) f = true;
+    if (open > 0) 
+        ans = (ans + dp(i + 1, open - 1, f)) % MOD;
+    ans = (ans + dp(i + 1, open + 1, f)) % MOD;
+
+    //printf("i %d open %d p_end %d\n", i, open, p_end);
+
+    return me[i][open][p_end] = ans;
 }
 
 int main() {
     scanf(" %d %d %s", &n, &m, s);
     memset(me, -1, sizeof me);
 
-    int qtd_open = 0;
     for (int i = 0; s[i] != 0; i++) {
-        if (s[i] == '(') qtd_open++;
-        else qtd_open--;
+        if (s[i] == '(') soares++;
+        else {
+            if (soares > 0) soares--;
+            else sena++;            
+        }
     }
 
-    qtd_open += (n - m);
+    printf("sena %d soares %d\n", sena, soares);
+    int ans = dp(0, 0, false);
+    if (sena == 0) ans = (ans + dp(0, soares, true)) % MOD;
 
-    int ans = 0;
-    antes = true;
-    for (int i = 0; i <= n - m; i++) {
-        end = i;
-        ans = (ans + dp(0, qtd_open, true)) % MOD;
-    }
-
-    ans = (ans + dp(n-m, 0, false)) % MOD; 
+    if (n == m && ans != 0) ans--;
 
     printf("%d\n", ans);
 }
