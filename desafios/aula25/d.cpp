@@ -11,12 +11,8 @@ char s[MAX];
 
 int dp(int i, int open, bool p_end) {
     if (i == n - m) {
-        printf("i == n open %d p_end %d\n", open, p_end);
         if (p_end) {
             if (open == 0) return 1;
-            return 0;
-        } else {
-            if (open - sena == 0 && soares == 0) return 1;
             return 0;
         }
     } 
@@ -24,20 +20,19 @@ int dp(int i, int open, bool p_end) {
 
     int ans = 0;
     if (!p_end) {
-        if (open - sena - 1 >= 0)
+        if (open - sena - 1 >= 0 && open - sena - 1 + soares <= 2000)
             ans = (ans + dp(i + 1, open - sena - 1 + soares, true)) % MOD;
 
-        if (open - sena + 1 >= 0)
+        if (open - sena + 1 >= 0 && open - sena + 1 + soares <= 2000)
             ans = (ans + dp(i + 1, open - sena + 1 + soares, true)) % MOD;
     }
 
-    bool f = false;
-    if (i + 1 == n - m && !p_end) f = true;
-    if (open > 0) 
-        ans = (ans + dp(i + 1, open - 1, f)) % MOD;
-    ans = (ans + dp(i + 1, open + 1, f)) % MOD;
+    if (i + 1 == n - m && !p_end) 
+        return me[i][open][p_end] = ans;
 
-    //printf("i %d open %d p_end %d\n", i, open, p_end);
+    if (open > 0) 
+        ans = (ans + dp(i + 1, open - 1, p_end)) % MOD;
+    ans = (ans + dp(i + 1, open + 1, p_end)) % MOD;
 
     return me[i][open][p_end] = ans;
 }
@@ -54,9 +49,8 @@ int main() {
         }
     }
 
-    printf("sena %d soares %d\n", sena, soares);
     int ans = dp(0, 0, false);
-    if (sena == 0) ans = (ans + dp(0, soares, true)) % MOD;
+    if (sena == 0 && soares <= 2000) ans = (ans + dp(0, soares, true)) % MOD;
 
     if (n == m && ans != 0) ans--;
 

@@ -77,3 +77,6 @@ contest 711:
 200-b.cpp: porcentagem
  
 224-b.cpp: two pointers (importante)
+
+148-a.cpp: Insomnia cure
+    como ver que um numero tem todos os digitos diferentes (linear com vetor de tamanho maior numero e flag de turn)

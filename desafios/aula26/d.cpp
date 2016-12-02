@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <bits/stdc++.h>
 #define ff first
 #define ss second 
@@ -42,3 +43,17 @@ int main () {
     }
 }
 
+=======
+#include<bits/stdc++.h>
+using namespace std
+
+int t, n, m;
+
+int main() {
+    scanf(" %d", &t);
+    while (t--) {
+        scanf(" %d %d", &n, &m);
+
+    }
+}
+>>>>>>> f0ebf9e8c243d0cd120a1e51b355dd84df17f267

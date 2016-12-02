@@ -1,3 +1,13 @@
+Importancia de ponteiros para tipos de dados em c:
+    Em programa em linguagem c, para que possamos trabalhar e alterar objetos em varias 
+funcoes sem que eles sejam globais, é necessário que se use ponteiros, pois estes apontam 
+para o endereco da memoria que guarda o valor e para o valor
+    Assim, o parametro da funcao é um ponteiro que recebera o endereco da variavel e, 
+assim, ira continuar trabalhando com o valor desse endereco.
+    No caso de uma struct nome * temos mais 2 propriedades:
+- Geralmente se usa var->atributo ao inves de (*var).atributo
+- Se faz um typedef de: struct nome *Nome (por exemplo) porque fica mais elegante.
+
 int* var
 significa que criei uma variavel var do tipo ponteiro para enderecos de conteudos para tipo int.
 logo var: é o endereco do que esse ponterio aponta
