@@ -80,3 +80,15 @@ contest 711:
 
 148-a.cpp: Insomnia cure
     como ver que um numero tem todos os digitos diferentes (linear com vetor de tamanho maior numero e flag de turn)
+
+116-a.cpp: usar max
+
+300-a.cpp: algoritmo construtivo
+
+259-a.cpp: ideia em tabuleiro de xadrez legal
+
+208-a.cpp: manipulacao de string
+
+137-b.cpp: vetor de frequencia, aparece ideia de permutacao
+
+320-a.cpp: 
