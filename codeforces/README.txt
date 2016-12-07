@@ -91,4 +91,20 @@ contest 711:
 
 137-b.cpp: vetor de frequencia, aparece ideia de permutacao
 
-320-a.cpp: 
+242-a.cpp: brute force legal
+
+188-b.cpp: constructive algorithm interessante!
+
+152-a.cpp: implementação
+
+339-b.cpp: implementação
+
+122-a.cpp: brute force facil
+
+160-a.cpp: guloso e sorting
+
+41-a.cpp: implementação facil com strings
+
+58-a.cpp: guloso, string, legal
+
+96-a.cpp: implementacao facil com strings
