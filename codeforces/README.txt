@@ -108,3 +108,32 @@ contest 711:
 58-a.cpp: guloso, string, legal
 
 96-a.cpp: implementacao facil com strings
+
+224-a.cpp: achar lados de um paralelepipedo baseado em suas tres areas
+
+219-a.cpp: vetor de freq, k-string (facil mas interessante)
+
+230-a.cpp: guloso, sorting (da pra usar vetor de permutacao)
+
+337-a.cpp: guloso (legal), brute
+
+257-b.cpp: guloso, jogos, escolha otima (legal)
+ 
+239-a.cpp: guloso, implementacao facil
+
+242-b.cpp: implementacao facil
+
+*459-b.cpp: - problema: achar a maior diferenca em um vetor e quantos pares de numeros nele geram essa diferenca
+            - implementacao legal e interessante pra treinar rapidez, clareza de ideias, corners e um pouquinho de combinatoria
+
+285-c.cpp: - problema: achar o menor custo pra transformar uma seq de n numeros inteiros em uma permutacao
+           - sort, guloso (o primeiro do menor é o que tem menor custo para ser o primeiro da permutacao e assim pordiante). Legal
+
+253-a.cpp: - guloso facil e aprende a manipular arquivo com fopen, fscanf, fprintf
+           - coloca o que tem mais na primeira posicao, depois vai intercalando entre os dois ate um acabar, e depois completa com o outro ate o final
+
+349-a.cpp: - guloso facil
+
+166-a.cpp: - implementacao facil
+
+276-b.cpp: - jogos, guloso, palindromos, facil
