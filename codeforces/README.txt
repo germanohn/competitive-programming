@@ -137,3 +137,10 @@ contest 711:
 166-a.cpp: - implementacao facil
 
 276-b.cpp: - jogos, guloso, palindromos, facil
+
+222-b.cpp: - classico, implementacao, vetor com equivalencias, bem importante e legal a ideia pra quem esta comecando!
+
+109-a.cpp div1: problema bem legal de brute force e implementacao, bom pra treinar implementacao da ideia!
+
+743-a.cpp div2: guloso, sacada bem legal!
+

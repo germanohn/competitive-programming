@@ -13,6 +13,6 @@ char s[MAX];
 
 int main () {
     scanf(" %d %d %d %s", &n, &a, &b, s);
-    printf("%d\n", s[a] != s[b]);
+    printf("%d\n", s[a - 1] != s[b - 1]);
 }
 
