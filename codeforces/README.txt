@@ -144,3 +144,7 @@ contest 711:
 
 743-a.cpp div2: guloso, sacada bem legal!
 
+217-a.cpp div1: formar componentes e conta-las (os que estao na mesma componente se atingem). Entao pode pensar como um grafo bipartido e contar as
+componentes, ou fazer com union find. Legal!
+
+368-b.cpp div2: ver quantos numeros diferentes tem a partir de um i de um vetor nao ordenado. Basta percorrer de tras pra frente, preprocessando. Legal
