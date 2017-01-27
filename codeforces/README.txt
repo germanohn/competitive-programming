@@ -148,3 +148,109 @@ contest 711:
 componentes, ou fazer com union find. Legal!
 
 368-b.cpp div2: ver quantos numeros diferentes tem a partir de um i de um vetor nao ordenado. Basta percorrer de tras pra frente, preprocessando. Legal
+
+602-b.cpp div2: - achar a maior sequencia de numeros tais que o maior e o menor numero da sequencia tem diferenca de no max 1
+                - problema MUITO INTERESSANTE, que por ter a propriedade de |Ai - Ai-1| <= 1, entao da pra fazer em O(n), comparando sempre as duas ultimas 
+                  diferencas nao negativas. Poderia ficar mais interessante e dificil se permitisse a diferenca de elementos consecutivos ser maior que 1, 
+                  e a diferenca entre elementos da sequencia ser maior que 1. (ai teria que fazer com o multiset)
+
+327-b.cpp div2: - construir uma sequencia de 10^5 numeros de no max 10^7, em que os numeros estejam em ordem crescente e o numero de indice i nao pode 
+                ser divisivel por nenhum menor que ele na sequencia. Problema com uma sacadinha.
+
+313-b.cpp div2: - problema classico de soma acumulada. 
+                - Fácil, mas útil pra pegar a ideia
+
+363-b.cpp div2: - problema classico de soma acumulada tambem
+                - Fácil, mas tem uma solucao alternativa interessante: como quer a menor soma de um segmento de k numeros consecutivos, pode somar os 
+                primeiros k, entao tira o primeiro e soma o k + 1, tira o segundo e soma o k + 2 e assim por diante ate o final da sequencia, pega o 
+                minimo disso.
+
+230-b.cpp div2 (t-prime): - dizer se um numero de 10^12 tem 3 divisores positivos
+                          - os t-primes sao quadrados perfeitos de numeros primos, entao basta fazer uma lista com os quadrados de todos os primos ate
+                          10^6, e ver se o numero esta nessa lista. BEM INTERESSANTE (TEORIA DOS NUMEROS)
+
+327-a.cpp div2: - classico problema de achar max subsequence sum
+                - mas da pra fazer O(n^3)
+
+189-a.cpp div2: - dado tres partes e um numero n, representar n como a maior quantidade possivel dessas tres partes
+                - brute force ou dp facil. No brute ideia interessante de fixar 2 e depois testar com o terceiro
+
+372-a.cpp div1: - guloso INTERESSANTE, tive DIFiculdade em achar a sacada de dividir em dois conjuntos pra entao aplicar a estrategia gulosa
+
+166-c.cpp div2: - guloso simples, mas tive um pouco de DIFiculdade pra implementar (calcular quantidade de elementos antes e depois de uma posicao).
+                - licao: quando tiver que calcular posicoes e quantidades, defina novas variaveis que facilitem a vizualicao do que esta sendo feito 
+                e considerado.
+
+322-b.cpp div2: - matematica INTERESSANTE, tive um pouco de DIFculdade pra resolver e nao cheguei exatamente na solucao esperada. O que tinha que perceber
+                era que se faria no maximo 2 buques mistos, porque 3 buques mistos equivale a fazer 3 individuas. Assim bastava testar fazer 0, 1, ou 2 buques
+                mistos e mais o que sobrou. Fazendo essa reducao ficava muito facil. O que eu fiz foi perceber que podia reduzir as quantidades pra valores <= 3
+                e dai tratava os casos.
+
+492-c.cpp div2: - sorting e guloso simples, mas bom para treinar, nao tive dificuldade
+                - tem que formar uma media, e para isso tem que aumentar a media com os que custam menos
+
+363-c.cpp div2: - guloso INTERESSANTE, depois que saquei foi tranquilo.
+                - uma parte foi pensar o que acontecia quando tinha dois, e depois tres pares consecutivos, qual era a decisao otima. Depois foi adicionar
+                o caso com tres ou mais nisso.
+
+235-a.cpp div1: - teoria dos numeros: dado um n(10^6) achar o maior lcm de 3 numeros nao necessariamente diferentes menores ou iguais a n.
+
+118-d.cpp div2: - dp: dp bem simples de contagem, os limites sao pequenos
+
+276-c.cpp div2: - Problema simples, mas BEM LEGAL pra treinar implementacao, sorting e ideia de soma acumulada em intervalos 
+
+486-c.cpp div2: - Problema INTERESSANTE, guloso (encontrar estrategia otima, e que basta anda na metade da string)
+                  com pratica de implementacao (pensar em indices em uma string e na distancia de letras no alfabeto
+
+224-b.cpp div2: - Problema INTERESSANTE, two pointers e vetor marcando a ultima ocorrencia de um elemento no vetor
+
+?? rever 485-a.cpp div2: - Problema bem INTERESSANTE, regras de congruencia e tambem com vetor de seen
+
+320-b.cpp div2: - Problema simples de dfs. Pensa em cada no como um no de um grafo, faz uma aresta direcionada
+                  conforme ele especifica quando tem uma aresta indo de u pra v, e depois basta ver se um vertice
+                  alcança outro usando uma dfs.
+
+377-a.cpp div1: - Problema MUITO LEGAL, com ideia simples e interessante, bastando fazer uma bfs ou dfs. Tambem legal que a estrategia gulosa de ir pegando
+                  quem tem menos vizinhos nao funciona (cheguei a pensar nisso)
+
+441-c.cpp div2: - Problema bem simples de construtive algorithm, basta navegar em uma matriz de uma determinada forma. Depois faz k - 1 tubos de tamanho 2,
+                  depois o ultimo tubo com o restante de celulas.
+
+337-b.cpp div2: - Muito LEGAL e IMPORTANTE, me ajudou bastante a entender mais de proporcoes.
+
+289-b.cpp div2: - Problema muito LEGAL e INTERESSANTE de SORTING, BRUTE FORCE e IMPLEMENTAÇAO. Primeiro importante notar que se dois numeros deixam 
+                  restos diferentes em relacao a um numero d, 
+                  entao nao importa quantas vezes se some ou subtraia d deles eles continuaram nao deixando o mesmo resto. Entao essa é uma relacao 
+                  importante de se saber, deixar dois numeros IGUAIS, IMPLICA que eles terao o mesmo resto quando divididos por qualquer numero.
+                  
+455-a.cpp div1: - DP bem simples de knapsack, mas bom pra treinar DP ITERATIVA.
+
+192-a.cpp div2: - Problema interessante de BRUTE FORCE (estrategia recorrente de tendo dois valores pra analisar, 
+                  fixa-se um deles e o outro e encontrado rapidamente e verificado. 
+                  Entao a sacada era perceber que tanto "a" quanto "b" poderiam
+                  valer no max 10^5, assim se podia se fixar um pra testar todos os valores de 1 ate 10^5, e o 
+                  outro nao fixado deveria ser a raiz quadrada do "n" menos a parcela devida ao numero fixado. 
+
+467-c.cpp div2: - DP bem simples de maximizar a soma de k intervalos escolhidos em um array, ou seja, um knapsack
+                  de intervalos, bastando usar um vetor de soma acc para a soma dos intervalos. 
+
+*** 339-c.cpp div2: - DP/dfs. Problema simples, mas ESSENCIAL, bom porque tem uma sacadinha da balança em um 
+                  dos estados
+                  e também porque tem a reconstrução de resposta que fiz na mesma função usando uma stack. Além 
+                  disso, é uma dp que por tras é um grafo em que os estados são vértices e os arcos entre vértices
+                  são os movimentos permitidos no problema. Então o que estamos querendo e fazendo na dp, na 
+                  é encontrar um caminho nesse grafo do estado inicial com "m" movimentos até o estado final 
+                  com "0" movimentos e a balança respeitando a relação imposta no problema. LEGAL!
+
+339-d.cpp div2: - SEGMENT TREE. Simples, mas com o detalhe da distancia pra folha que muda a operacao que tem que ser feita. Cada update vai ser 
+                  O(log(2^n)) = O(n), e como n <= 17, para m <= 10^5 query esta ok! LEGAL! 
+
+253-b.cpp div2: - TWO POINTERS bem interessante, ou BRUTE FORCE (fixando um valor para smallest) e BINARY SEARCH (para o chutar o maior que ainda da) e 
+                  e soma acc para saber quantos vao ser tirados. Problema que tive dificuldade e vale a pena fazer e entender!
+
+*** 350-c.cpp div2: - SORTING E GREEDY. A sacada do problema era descobrir em qual ordem visitar os pontos, de forma que eu visitar um nao passasse por 
+                  de outro. É um conceito bem importante, porque esse problema mostra como a partir de um ponto visitar outros sem passar por cima 
+                  de algum ponto no meio do caminho. Uma forma era sortar por distancia Manhattan. Isso valeria pois se um ponto "a" estiver no 
+                  caminho de um ponto "b", entao "a" tem dis manhattan inferior a "b". MUITO LEGAL e IMPORTANTE CONCEITO esse problema.
+
+*** 466-c.cpp div2: - BRUTE FORCE com SOMA ACUMULADA, muito interessante esse problema e da pra fazer em O(n).
