@@ -1,0 +1,5 @@
+// to[e]: vetor em que o indice é uma aresta e, e to[e] é o vertice da lista de adj de um certo vertice
+// he[u]: vetor que guarda o valor da aresta no vetor "to" que guarda a cabeça da lista ligada da lista
+// de adjacencia de u
+// nx[e]: guarda o valor da proxima aresta de uma certa lista de adjacencia 
+int to[MAX], hd[MAX], nx[MAX];

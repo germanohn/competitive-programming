@@ -254,3 +254,24 @@ componentes, ou fazer com union find. Legal!
                   caminho de um ponto "b", entao "a" tem dis manhattan inferior a "b". MUITO LEGAL e IMPORTANTE CONCEITO esse problema.
 
 *** 466-c.cpp div2: - BRUTE FORCE com SOMA ACUMULADA, muito interessante esse problema e da pra fazer em O(n).
+
+*251-a.cpp div1: - Binary search, combinatorics, two pointers. Além da ideia de two pointers, tem a ideia legal de fixar um cara para evitar contar 
+                  coisas mais de uma vez. Problema fácil, mas interessante.
+
+453-a.cpp div1: - Probabilidades, valor esperado. Problema interessante de contagem, usando a ideia de valor esperado e ainda com um truque na conta 
+                  para evitar overflow. Problema fácil, mas se fosse a soma de todas as jogadas, acho que seria bem mais difícil. 
+
+414-b.cpp div1: - Combinatorics, dp construtiva. Achar um conjunto de numeros que preserva uma propriedade. Faz uma dp que seleciona os elementos do 
+                  conjunto (dp construtiva) de modo a respeitar a propriedade e no final soma todos os conjuntos construidos.
+
+** 353-a.cpp div2: - Math. Problema muito legal para treinar tratamento de casos.
+
+*** 349-b.cpp div2: - Guloso muito legal! Construir o maior numero possivel, sendo que os digitos tem um custo. 
+
+764-a.cpp div2: - Continha bem fácil
+
+764-b.cpp div2: - Constructive algorithm. Dava uma sequencia final, e tinha que encontrar a sequencia que tinha originado ela, dados as operações 
+                  permitidas. Tinha um padrão na sequencia, depois que via ficava facil.
+
+* 764-c.cpp div2: - Dfs bem legal e de pintar grafo!
+

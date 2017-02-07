@@ -6,27 +6,27 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> pii;
 
+int n, a, b;
+
 int main () {
-    int n, a, b;
-    a = b = 0;
     scanf(" %d", &n);
-    int cont = 0;
+    bool l, r;
+    l = r = false;
     for (int i = 0; i < n; i++) {
         int x, y;
         scanf(" %d %d", &x, &y);
-        if (x % 2 == 1) {
-            if (a % 2 == 1) 
-                a += x, b += y;
-            else 
-                a += y, b += x, cont++;
-        } else if (y % 2 == 1) {
-            if (a % 2 == 1) 
-                a += y, b += x, cont++;
-            else 
-                a += x, b += y;
+        if (x % 2 != 0) {
+            a++;
+            if (y % 2 == 0) l = true;
+        }
+        if (y % 2 != 0) {
+            b++;
+            if (x % 2 == 0) r = true;
         }
     }
-    if (a % 2 == 0 && b % 2 == 0) 
-        printf("
+    a %= 2, b %= 2;
+    if (!a && !b) printf("0\n");
+    else if (a && b && (l || r)) printf("1\n");
+    else printf("-1\n");
 }
 

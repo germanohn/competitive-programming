@@ -8,87 +8,85 @@ typedef pair<int, int> pii;
 
 const int MAX = 400005;
 
-int n, new_color, turn, cont;
-int color[MAX], seen[MAX], sz[MAX];
-int lista[MAX], head[MAX], nx[MAX];
+int n, cont_e, turn, new_color;
+int color[MAX], sz[MAX], seen[MAX];
+int to[MAX], hd[MAX], nx[MAX];
 bool mark[MAX];
 map<pii, int> mp;
 
-int find(int a) {
-    if (a == -1 || !mark[a]) return a;
-    return nx[a] = find(nx[a]);
+int find(int &e) {
+    if (e == -1 || !mark[e]) return e;
+    else return e = find(nx[e]);
 }
 
-void dfs(int u, int rep) {
+void paint(int u, int label) {
     sz[color[u]]--;
-    color[u] = rep;
+    color[u] = label;
     sz[color[u]]++;
-    for (int pos = find(head[u]); pos != -1; pos = find(nx[pos])) {
-        int v = lista[pos];
+    for (int e = find(hd[u]); e != -1; e = find(nx[e])) {
+        int v = to[e];
         if (color[v] != color[u])
-            dfs(v, rep);
+            paint(v, color[u]);
     }
 }
 
 void join(int a, int b) {
     if (sz[color[a]] < sz[color[b]]) swap(a, b);
-    dfs(b, color[a]);
+    paint(b, color[a]);
 
+    // com esse swap, nao preciso mapear (a, b) e (b, a), porque saberei que (b, a)
+    // tera valor cont_e + 1
     if (a > b) swap(a, b);
-    // inserindo b na lista de adjacencia de a
-    mp[pii(a, b)] = cont;
-    lista[cont] = b;
-    nx[cont] = head[a];
-    head[a] = cont++;
+    mp[pii(a, b)] = cont_e;
 
-    // inserindo a na lista de adjacencia de b
-    lista[cont] = a;
-    nx[cont] = head[b];
-    head[b] = cont++;
+    // criando aresta (a, b) e (b, a)
+    to[cont_e] = b; nx[cont_e] = hd[a]; hd[a] = cont_e++;
+    to[cont_e] = a; nx[cont_e] = hd[b]; hd[b] = cont_e++; 
 }
 
-int split(int a, int b) {
-    if (a > b) swap(a, b);
-    // marcando as arestas que estao deixando de existir
-    int val = mp[pii(a, b)];
-    mark[val] = true;
-    mark[val + 1] = true;
-
+void parallel_dfs(int a, int b) {
     stack<pii> st[2];
-    st[0].push(pii(a, find(head[a])));
-    st[1].push(pii(b, find(head[b])));
-    turn++;
+    st[0].push(pii(a, find(hd[a])));
+    st[1].push(pii(b, find(hd[b])));
     bool round = false;
+    turn++;
     while (!st[round].empty()) {
         pii top = st[round].top();
-        int e = top.ss;
+        int u = top.ff, e = find(top.ss);
         st[round].pop();
-        seen[top.ff] = turn;
-        while (e != -1 && seen[lista[e]] == turn)
+        seen[u] = turn;
+        while (e != -1 && seen[to[e]] == turn) 
             e = find(nx[e]);
-        if (e == -1)
+        if (e == -1) 
             continue;
-        pii now = pii(lista[e], find(head[e]));
+        int v = to[e];
+        seen[v] = turn;
         top.ss = find(nx[e]);
         st[round].push(top);
-        st[round].push(now);
+        st[round].push(pii(to[e], hd[v]));
         round = !round;
-    }    
+    }
     if (!round) 
-        dfs(a, new_color);
+        paint(a, new_color);
     else 
-        dfs(b, new_color);
+        paint(b, new_color);
     new_color++;
+}
+
+void split(int a, int b) {
+    if (a > b) swap(a, b);
+    int val_e = mp[pii(a, b)];
+    mark[val_e] = true, mark[val_e + 1] = true;
+    parallel_dfs(a, b);
 }
 
 int main () {
     scanf(" %d", &n);
+    memset(hd, -1, sizeof hd);
     for (int i = 1; i <= 2 * n; i++) 
         color[i] = i, sz[i] = 1;
-    memset(head, -1, sizeof head);
     new_color = n + 1;
     char c;
-    cont = 1;
     while (scanf(" %c", &c) && c != 'E') {
         if (c == 'E') 
             break;
@@ -96,13 +94,11 @@ int main () {
         scanf(" %d %d", &a, &b);
         if (c == 'C') 
             join(a, b);
-        else if (c == 'D') { 
+        else if (c == 'D')
             split(a, b);
-        } else {
-            if (color[a] == color[b])
-                printf("YES\n");
-            else 
-                printf("NO\n");
+        else {
+            if (color[a] == color[b]) printf("YES\n");
+            else printf("NO\n");
         }
         fflush(stdout);
     }
