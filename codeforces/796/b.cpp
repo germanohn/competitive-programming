@@ -9,31 +9,27 @@ typedef pair<int, int> pii;
 const int N = 1e6 + 5;
 
 int n, m, k;
-set<int> hole;
+int hole[N];
 
 int main () {
     scanf(" %d %d %d", &n, &m, &k);
     for (int i = 0; i < m; i++) {
         int h;
         scanf(" %d", &h);
-        hole.insert(h);
+        hole[h] = 1;
     }
+
     int bone = 1;
-    bool fall = false;
-    if (hole.find(bone) != hole.end())
-        fall = true;
     while (k--) {
         int u, v;
         scanf(" %d %d", &u, &v);
-        if (!fall) {
-            if (bone == u) 
-                bone = v;
-            else if (bone == v)
-                bone = u;
+        if (hole[bone]) 
+            continue;
 
-            if (hole.find(bone) != hole.end()) 
-                fall = true;
-        }
+        if (bone == u) 
+            bone = v;
+        else if (bone == v)
+            bone = u;
     }
 
     printf("%d\n", bone);
