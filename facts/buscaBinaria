@@ -10,9 +10,29 @@ exemplo: procurando valor em funcao (entao é double e tem que cuidar com a prec
 
 busca binaria na rta
 
-TESTE pra saber calcular o mid: 
+*TESTE pra saber calcular o mid: 
     pega sempre o caso 0, 1 e ve o que acontece pegando o floor ou o ceiling. Em um dos casos sempre vai entrar
 em loop infinito
+
+* Dois pontos importante ao se analisar ao construir uma bb: 
+
+- Condição do laço: 
+    Existem casos em que while (lo != hi) entra em loop infinito
+        while (lo != hi) {
+            int mid = (lo + hi) / 2;
+            if (v[mid] > a)
+                hi = mid - 1;
+            else if (v[mid] == a)
+                hi = mid;
+            else 
+                lo = mid + 1;
+        }       
+
+- Ceil ou floor no calculo do mid?
+     Dependendo do que se quer ou o hi ou o lo podem receber o mid como valor final (constante) e nao (mid - 1)
+ou (mid + 1). 
+     No caso em que hi = mid, entao o mid tem que ser floor.
+     No caso em que lo = mid, entao o mid tem que ser ceil.
 
 Problems: 
 
