@@ -76,3 +76,6 @@ pos+1 ate r-1, uma posicao para a esquerda.
 3969 (And Now, a Remainder from Our Sponsor): teorema chines dos restos
 
 2930 (Minimizing Maximizer): recursao e two pointers
+
+**3655 (onion layers): convex hull varias vezes. Acha o convex hull, retira os pontos acha o proximo e assim por diante ate acabar os pontos. So é 
+                     preciso tratar os pontos colineares. Eles tem que entrar no convex hull.

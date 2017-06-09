@@ -275,3 +275,177 @@ componentes, ou fazer com union find. Legal!
 
 * 764-c.cpp div2: - Dfs bem legal e de pintar grafo!
 
+493-c.cpp div2: - Brute force. Primeiro tinha feito O(nlogn), mas depois vi que dava pra fazer sem binary search
+                  logo linear. Legal
+
+61-a.cpp div2: - Implementacao de xor entre duas strings. Bem facil
+
+285-a.cpp div2: - Problema mais facil do que contar quantas inversoes tem uma sequencia, mas mesmo assim uma 
+                  SACADINHA Legal
+
+463-b.cpp div2: - Guloso facil
+
+270-a.cpp div2: - So usar a formula de angulo interno de um poligo regular.
+
+501-a.cpp div2: - So continha, facil
+
+437-c.cpp div2: - Guloso bem simples
+
+*** 340-c.cpp div2: - Combinatoria, math e implementação (soma acumulada). Achar a media e n! permutações, 
+                    em que cada permtução forma uma soma da forma 
+                    S = p1 + |p1 - p2| + |p2 - p3| + ... + |pn-1 - pn|. Muito da hora o problema!
+
+*** 219-c.cpp div2: - Guloso muito legal e interessante, também interessante a separação em casos. Da pra 
+                    fazer com dp?
+
+** 766-d.cpp div2: - Union find, dfs. Interessante
+
+*165-c.cpp div2: - Two pointers. Achar em uma string de 0 e 1, quantas substrings tem exatamente k 1's.
+
+*166-e.cpp div2: - Dp interessante porque tem que fazer iterativa, porque recursiva estoura a pilha de recursão.
+
+***463-c.cpp div2: - Implementação com matrizes. Problema muito IMPORTANTE para aprender a mapear as diagonais (todas as principais e
+                   secundárias) de uma matriz pelas coordenadas (i, j) das células.
+                   Quando se esta em um celula (i, j) e se quer andar na diagonal principal dela a proxima celula sera (i + 1, j + 1), 
+                   por isso celulas na mesma diagonal principal possuem o mesmo valor i - j.
+                   Quando se esta em um celula (i, j) e se quer andar na diagonal secundária dela a próxima célula será (i - 1, j + 1), 
+                   logo aqui o que se preservam para células na mesma diagonal secundária é o valor i + j.
+
+**388-a.cpp div1: - sorting e guloso O(n). MUITO INTERESSANTE, vale a pena fazer!
+                    Ou da pra fazer chutando o número de pilhas k da solucao otima, e entao a i-ésima menos caixa deverá deverá ter valor pelos 
+                    menos de i/k (usa busca binaria).
+
+*264-a.cpp div1: - Constructive algorithms, implementation, two pointers. A sacada é perceber que a próxima pedra a cair vai ocupar a primeira 
+                   posição a esquerda não ocupada, ou a primeira posição a direita na ocupada. Então mantenho dois pointeiros "l" e "r".
+                   A sacada é ver que quando uma pedra "i", se aparecer "l", significa que 
+                   todas as pedras que virão a seguir ficarão antes dela na resposta final, então com certeza posso diminuir o pointeiro "r". Se 
+                   aparecer "r", significa que todas as pedras que virão a seguir ficarão depois dela na resposta final, então com certeza posso
+                   aumentar o pointeiro "l". Problema simples de implementar, mas CRIATIVO e com uma SACADA de two pointers interessante.
+
+456-a.cpp div2: - Sorting, facil
+
+258-a.cpp div1: - Guloso, math. Bem facil, mas interessante para começar a entender representação de numeros
+
+*272-c.cpp div2: - Implementação simples, mas interessante. IDEIA de problema INTERESSANTE, daria pra dificultar um pouco colocando onde que o bloco
+                   cairia, talvez precisasse de seg tree.
+
+433-b.cpp div2: - Prefix Sum (soma acumulada) e sorting, problema facil.
+
+115-a.cpp div1: - dfs, bfs, tree, profundidade em uma arvore. Problema com implementação e solução simples, mas com uma sacadinha legal: 
+                  os vertices ficarão em um mesmo conjunto se tiverem a mesma profundidade, e nao existe um superior a outro no mesmo grupo, 
+                  porque dois vertices so podem ter essa relacao se tiverem profundidade diferentes. Logo a maior profundidade da arvore sera a 
+                  quantidade minima de conjuntos.
+
+416-c.cpp div2: - Guloso, busca binária. Simples, mas com ideia interessante de comecar pelos que pagam mais e usando a menor mesa necessaria para 
+                  alocar esse grupo, nem precisa da busca binaria dados os limites do problema.
+
+510-b.cpp div2: - dfs/UF. Problema classico de achar ciclos em um grafo nao direcionado.
+
+550-c.cpp div2: - Brute force, dp, math. divisibilidade por 8, problema ok.
+
+220-a.cpp div1: - Sorting, facil.
+
+***152-c.cpp div2: - Combinatória, strings. Problema muito legal, com uma sacada bem legal também, vale a pena fazer! Queria saber quantas strings 
+                  diferentes consegue formar, podendo trocar entre duas strings quaisquer das n disponiveis, prefixos de tamanho qualquer (1 a m).
+                  Bastava pensar em construir as strings pensando em cada posição delas. Assim, se percebia que na i-ésima posição da string
+                  construída era possivel ter qualquer letra da i-ésima posicao das strings originais. Logo, o total de strings diferentes seria
+                  o produto da quantidade de letras diferentes para usar em cada posição da string a ser construída.
+
+777-a.cpp div2: - constructive algorithms, implementation. Primeiro é preciso perceber que existe um ciclo nos estados sempre de tamanho 6, porque
+                  para a bola começando nos tres possiveis estados, sempre no sexto movimento volta-se para o estado inicial, o que equivale ao 
+                  começo porque no 7 movimento estaremos em um movimento impar com o estado inicial, assim como no comeco estavamos em um movimento
+                  impar com o estado inicial. Segundo, agora podemos simular do começo para o final (começa de todos dos tres estados e ve qual
+                  chega no ultimo apos n % 6 movimentos) ou o contrario (começa desfazendo o ultimo movimento pela ultima posicao, depois desfaz 
+                  o penultimo movimento a partir da posicao atual, e assim por diante ate chegar no movimento 0, entao pega a posicao resultante.
+
+777-c.cpp div2: - Rever como criar vector sem dimensao certa e fazer uma dp.
+
+*257-c.cpp div2: - Geometry, sorting. Ordenar pontos no plano cartesiano pela atan2, entao encontrar o maior angulo entre dois pontos adjacentes
+                   na ordenacao. 
+
+*332-b.cpp div2: - implementation. Problema interessante: achar os dois maiores segmentos de tamanho k (disjuntos) em um vetor de 2e5 numeros
+                  positivos. Basta para cada i <= n - k + 1, i >= k + 1, guardar o melhor segmento encontrado desse i para frente de tamanho k.
+                  Assim, para cada i pega o best[i + k] com o intervalo comecando em i e ve se é melhor que a resposta. 
+
+*427-c.cpp div2: - SCC. Problema simples de SCC, mas interessante por ser um C de div2.
+
+*501-c.cpp div2: - constructive algorithms, trees, greedy, data structures (queue). Para cada vertice ele da o degree do vertice e o xor de todos os vertices adjacentes
+                   a ele. Entao bastava comecar pelas folhas (degree[i] = 1), pois elas tem apenas um vertice ligado, logo o xor sera o 
+                   proprio vertice ligado a ela. Ideia legal! Parece que estamos fazendo um topo sort, mas o grafo não é direcionado.
+
+*443-b.cpp div2: - brute force, implementation. Interessante para treinar implementação (pensar como vai testar todos os casos de um jeito simples
+                   e organizado). Importante saber codar rapido.
+
+*300-c.cpp div2: - brute force, combinatoria. Nesse problema precisava calcular binomios (a, b), mas com a sempre valendo n, e b variando de 0 a 
+                   n. Como n <= 1e6, nao se podia fazer a dp que calcula recursivo os binomios. Entao nesse problema se calculava usando a formula
+                   mesmo e a ideia de INVERSO MODULAR.
+                   (usando inverso modular).
+
+*279-c.cpp div2: - implementation, two pointers. Problema trata de identificar segmentos do vetor como ladders. A sacada esta em representar 
+                   cada elemento do vetor como dois inteiros (ja que ele pode ser tanto o comeco quanto o final de uma ladder). Entao se percorre
+                   da esq para a dir para setar a ladder mais a esq de que o elemento faz parte. Depois se itera da dir para a esq para se setar
+                   a ladder mais a dir de que o elemento faz parte. Assim quando aparece uma query basta, ver se ladder[l].ss == ladder[r].ff
+
+246-d.cpp div2: - implementation, data structures. Problema simples ate para um D de div2, bastava fazer um vetor de set de frequencia.
+
+*758-d.cpp div2: - greedy, strings. É um guloso ate simples de ver, mas o mais dificil do problema para mim foi construir os numeros de cada potencia
+                   de n: On each step take the longest suffix of a string as the last base-n digit and proceed to same task for string with this 
+                   suffix excluded. Repeat until the string isn't empty. Check carefully that the suffix is a number less than n and also doesn't 
+                   have any leading zeros except for the case when it's equal to zero. Bom problema para treinar casos, e essa construcao.
+
+*371-c.cpp div2: - binary search, brute force. Problema legal de busca binaria na resposta (brute force), que é possivel porque o gasto de dinheiro é
+                   sempre non-decreasing com o aumento do numero de hamburguers, entao basta fazer um lower_bound no numero de hamburguers que consigo
+                   fazer com o dinheiro que tenho. Simples, mas bom para praticar.
+
+*231-c.cpp div2: - binary search, sortings, two pointers, prefix sum. Achar o numero que mais aparece no vetor, so que antes disso pode-se fazer k
+                   k operacoes (cada operacao é aumentar de um algum numero do vetor). Problema bem interessante pelos assuntos que envolve. 
+                   Vale a pena fazer!
+
+*275-c.cpp div2: - binary search, guloso. Bem interessante!
+
+*275-b.cpp div2: - Constructive algorithms, implementatio. Problema que deu bastante trabalho, vale a pena refazer pra treinar implementação!
+
+*431-c.cpp div2: - dp em arvore de contar quantidade de caminhos com umas restricao. Problema facil, mas bom para comecar nesse assunto!
+
+***483-b.cpp div2: - Binary Search, inclusion-exclusion principle. Problema muito legal que usa a ideia de busca binaria na resposta (entao a
+                   pessoa tem que identificar que a função f a ser minimizada é monótona) e o principio da inclusão-exclusão para fazer a 
+                   contagem de elementos de conjuntos (que possuem intersecção). Simples de implementar, mas bem interessante!
+
+225-c.cpp div2: - dp, matrices. So fazer!
+
+460-b.cpp div2: - brute force, implementation, math. Simples, mas interessante.
+
+**454-b.cpp div2: - implementation. Problema interessante, tive dificuldade.
+
+496-c.cpp div2: - brute force, implementation, constructive algorithm. Bom refazer.
+
+***505-c.cpp div2: - dp. Ideia muito interessante! Vale a pena fazer o problema
+
+**478-c.cpp div2: - Greedy. Ideia gulosa interessante de perceber, porque não precisa saber os movimentos que serão feitos, apenas que existe eles
+                    e em qual valor eles vão chegar.
+
+479-c.cpp div2: - Greedy, sorting. Simples, mas ideia interessante para começar a treinar guloso.
+
+**519-d.cpp div2: - Data Structures. Bom problema para perceber a importancia de pensar tambem em data structures para resolver o problema.
+
+***439-c.cpp div2: Constructive algorithms, implementation, number theory. Problema muito bom para treinar organização de ideias, tratamento de casos, 
+                   e pensamento na implementação. Também tem a ideia interessante que desencadeia um algoritmo construtivo: uma partição naquele formato
+                   é possível se, e somente se, for possível organizar os elementos de uma certa maneira. Então constroi eles dessa maneira e se não for possível 
+                   significa que não é possível um partição como ele deseja.
+
+796-a.cpp div2: implementação bem simples.
+
+796-b.cpp div2: implementação simples.
+
+796-c.cpp div2: 
+
+796-d.cpp div2: 
+
+***460-c.cpp div2: binary search, greedy and data structures. Problema muito legal que envolvia busca binaria na resposta, e para testar o chute da busca 
+                binaria tinha que fazer um guloso. Alem disso tinha que manter um vetor e uma variavel a mais para fazer o guloso.
+
+*271-d.cpp div2: trie, string. Problema básico de trie.
+ 
+466-b.cpp div2: pouco math. Mas interessante, tenho dois numeros a e b, quero saber a menor quantidade que preciso aumentar a (x) e b (y) para que (a + x) * (b + y) >= 6 * n
+
+385-c.cpp div2: prefix sum. Só fazer

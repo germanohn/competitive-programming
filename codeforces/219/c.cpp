@@ -11,30 +11,47 @@ const int MAX = 500005;
 int n, k;
 char s[MAX];
 
-int main () {
-    scanf(" %d %d %s", &n, &k, s + 1);
-    s[0] = 'a';
-    int cont = 0;
-    for (int i = 1; s[i] != 0; i++) {
-        if (s[i] == s[i - 1]) {
-            char c;
-            if (c != s[i - 1] && c != s[i + 1]) 
-                cont++, s[i] = c;
-            else {
-                for (c = 'A'; c - 'A' <= k; c++) {
-                    if (c != s[i - 2] && c != s[i]) 
+int main() {
+    scanf(" %d %d %s", &n, &k, s);
+    int repaints = 0;
+    if (k == 2) {
+        int a = 0, b = 0;
+        char ca = 'A', cb = 'B';
+        for (int i = 0; s[i] != 0; i++) {
+            if (s[i] != ca) a++;
+            if (s[i] != cb) b++;
+            swap(ca, cb);
+        }
+        repaints = min(a, b);
+        printf("%d\n", repaints);
+        if (a < b) 
+            ca = 'A', cb = 'B';
+        else 
+            ca = 'B', cb = 'A';
+        for (int i = 0; s[i] != 0; i++) {
+            printf("%c", ca);
+            swap(ca, cb);
+        }
+        printf("\n");
+    } else {
+        int len = 1;
+        char cur = s[0];
+        int l = strlen(s);
+        for (int i = 1; i < l + 1; i++) {
+            if (s[i] != cur) {
+                repaints += len / 2;
+                char dif;
+                for (int j = 0; j < k; j++) {
+                    dif = j + 'A';
+                    if (dif != cur && dif != s[i])
                         break;
                 }
-                if (c != s[i - 2] && c != s[i]) 
-                    cont++, s[i - 1] = c;
-                else {
-                    cont += 2;
-                    if (s[i] == 'A') s[i] = 'B', s[i + 1] = 'A';
-                    else s[i] = 'A', s[i + 1] = 'B';
-                }
-            }
+                for (int j = i - len + 1; j < i; j += 2) 
+                    s[j] = dif;
+                len = 1; cur = s[i];
+            } else 
+                len++;
         }
+        printf("%d\n%s\n", repaints, s);
     }
-    printf("%d\n%s\n", cont, s + 1);
 }
-
