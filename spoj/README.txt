@@ -20,3 +20,5 @@ lca_st - lca
                              simples, tem ideias importantes por tras!
 
 tap2013c : - Duas dp's bem simples
+
+histogram: ideia importante de pilha!
