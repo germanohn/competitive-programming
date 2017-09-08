@@ -1,3 +1,8 @@
+-> Problemas interesse: 
+    - Lista Sussu
+    - 7105 knights live archive
+    - 4332 block for kids live archive
+
 DEFINICAO
     recorrencia linear é uma funcao ou sequencia tal que cada termo é uma 
 combinacao linear dos anteriores (Linear significa que os termos anteriores sao apenas multiplicados por uma constante (possivelmente 0) e nada mais.
@@ -50,3 +55,6 @@ generally of an element of a semigroup, like a polynomial or a square matrix.
 -A^p = A(A^(p-1)) se p é impar
 
 -A^p = X^2, em que X = A^(p/2)
+
+/////////////////////////////
+
