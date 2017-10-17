@@ -1,0 +1,26 @@
+// Problems
+-> A. Learning Languages (Cf 277) : contar componentes em um grafo bipartido
+
+// Idea: 
+-> o vetor pai (p[]) guarda algum elemento da mesma classe, no caso do representante
+será ele mesmo. Perceba que isso é a ideia usada para a melhor implementação, e ela
+surge com o Quick-Union, pois no Quick-Find p[] funcionava como o representante direto
+da classe. Com essa ideia de p[], o que se forma na verdade é uma floresta, pois 
+p[i] é o pai de i, e então temos uma árvore para cada classe/componente.
+
+// Implementation
+
+int find (int a) {
+    if (a == pai[a]) return a;
+    return pai[a] = find (pai[a]);
+}
+
+bool join (int a, int b) {
+    a = find (a), b = find (b);
+    if (a == b) return false;
+    if (sz[a] < sz[b]) swap (a, b);
+    pai[b] = pai[a];
+    sz[a] += sz[b];
+    return true; 
+}
+
