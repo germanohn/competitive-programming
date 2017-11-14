@@ -449,3 +449,7 @@ componentes, ou fazer com union find. Legal!
 466-b.cpp div2: pouco math. Mas interessante, tenho dois numeros a e b, quero saber a menor quantidade que preciso aumentar a (x) e b (y) para que (a + x) * (b + y) >= 6 * n
 
 385-c.cpp div2: prefix sum. Só fazer
+
+817-d.cpp div2: ideia importante de pilha
+
+817-e.cpp div2: aplicação básica de trie
