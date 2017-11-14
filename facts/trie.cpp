@@ -1,3 +1,8 @@
+Problemas relacionados: 
+
+- 817-e.cpp  
+- tap2016: g.cpp (efficient managing (spoj))
+
 // número de vértices na trie é: quantidade de strings*(tamanho da string)
 // porque o tamanho da string é a quantidade de prefixos diferentes de uma string
 

@@ -35,5 +35,8 @@ int dp (int i, int sum, bool pre) {
     return ans;
 }
 
-// problemas de interesse:[
-// digit count, how many ones needed, space elevator
+// problemas de interesse:
+// - digit count (live archive) 
+// - how many ones needed (live archive)
+// - space elevator (uva)
+// - hill number (live archive)

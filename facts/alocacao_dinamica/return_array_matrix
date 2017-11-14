@@ -1,0 +1,8 @@
+3 opções:
+
+- cria uma struct com o tipo de dado (problema é que usa muita memória extra)
+- faz alocacão dinâmica e retorna o ponteiro 
+- manda o ponteiro do objeto a ser alterado, como parâmetro da função, assim ele só é alterado
+
+Nos dois primeiros está criando uma estrutura nova (gastando mais memória). No segundo irá 
+sobreescrever uma estrutura já existente.

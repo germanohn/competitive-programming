@@ -1,41 +1,44 @@
-struct point {
-    // Variables
+struct Point {
+    // Vpriables
     double x, y;
 
     // Constructors
-    point() {}
-    point(double x, double y) : x(x), y(y) {}
+    Point() {}
+    Point(double x, double y) : x(x), y(y) {}
 
     // Operators
-    point operator+ (const point &a) const {
-        return point(x + a.x, y + a.y);
+    Point operator+ (const Point &p) const {
+        return Point(x + p.x, y + p.y);
     }
-    point operator- (const point &a) const {
-        return point(x - a.x, y - a.y);
+    Point operator- (const Point &p) const {
+        return Point(x - p.x, y - p.y);
     }
-    point operator* (double a) const {
-        return point(a * x, a * y);
+    Point operator* (double k) const {
+        return Point(p * x, p * y);
     }
-    point operator* (const point &a) const {
-        return point(x * a.x, y * a.y);
+    Point operator* (const Point &p) const {
+        return Point(x * p.x, y * p.y);
     }
-    double operator^ (const point &a) const {
-        return x * a.y - y * a.x; 
+    double operator^ (const Point &p) const {
+        return x * p.y - y * p.x; 
     }
-    bool operator< (const point &a) const {
-        if (fabs(x - a.x) < eps) return (y < a.y + eps);
-        return (x < a.x + eps);
+    bool operator< (const Point &p) const {
+        if (fabs(x - p.x) < eps) return (y < p.y + eps);
+        return (x < p.x + eps);
     }
 
     // Functions
-    double dist2() const {
-        return x * x + y * y;
+    double norm2() const { return x * x + y * y; }
+    double norm() const { return sqrt(dist2()); }
+    double arg() { return atan2(y, x); } // [-PI, PI]
+    Point rotate(double alpha) {
+        return Point(x * cos(alpha) - y * sin(alpha), 
+                     x * sin(alpha) + y * cos(alpha));
     }
-    double dist() const {
-        return sqrt(dist2());
+    Point proj(const Point &p) const {
+        double lambda = (*this * p) / p.dist2();
+        return lambda * p;
     }
-    point proj(const point &a) const {
-        double lambda = (*this * a) / a.dist2();
-        return lambda * a;
-    }
-}
+};
+
+template<class T> using Vector = Point<T>; // ou só using Vector = Point

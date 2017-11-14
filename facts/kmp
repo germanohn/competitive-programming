@@ -1,0 +1,4 @@
+- Idea:
+The KMP algorithm uses a value from lps[] to decide the next sliding position. 
+lps[i] denotes the length of longest proper suffix which is also a proper 
+prefix for string formed by characters from index 0 to index 'i'(including 'i').

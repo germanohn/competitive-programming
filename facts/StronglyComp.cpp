@@ -8,10 +8,18 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> pii;
 
-// grafo direcionado
-// aresta de cruzamento: aresta entre um adjacente a mim, mas que já foi visto (não é meu filho na arvore de dfs) e teve a sua recursao terminada
-// por isso que no else se faz low[u] = min (low[u], low[v]), mas poderia ser d[v] tambem
-// aresta de retorno: aresta entre um adjacente a mim, mas que já foi visto e não teve a sua recursao terminada
+/*
+ - grafo direcionado
+ - aresta de cruzamento: dado um vértice u, uma aresta uv é dita de cruzamento, se v é um vértice que 
+   além de já ter sido visto, teve sua recursão (sua chamada de dfs: dfs(v)) terminada.
+ - por isso que no else se faz low[u] = min (low[u], low[v]), mas poderia ser d[v] tambem
+ - aresta de retorno: dado um vértice u, aresta uv é dita de retorno, se v é um vértice já visitado, mas
+   que não teve sua recursão (sua chamada de dfs: dfs(v)) terminada ainda. Também pode ser vista como uma aresta para um ancestral.
+ - forward edge: aresta para descendente na árvore.
+ - Low[u]: maior ancestral de u que consigo alcançar com uma aresta de retorno que pode partir de u ou 
+   de um descendente de u (vértice na subárvore de u). Como é direcionado, não precisa se preocupar com aresta 
+   pai que tinha no caso de achar ponte.
+*/
 
 int time = 0, sn = 0;
 
@@ -24,11 +32,8 @@ void dfs (int u) {
         if (!seen[v]) {
             dfs (v);
             low[u] = min (low[u], low[v]);
-        } else {
-            // pode ser tanto low[v] ou d[v]
-            // se for low[v] entao low[u] ira guardar o menor vertice que consigo chegar com numero de arestas variavel
-            // se for d[v] entao low[u] ira guardar o menor vertice que consigo chegar com uma unica aresta 
-            low[u] = min (low[u], low[v]);
+        } else { // agora não tem mais aresta pai, pois é direcionado.
+            low[u] = min (low[u], d[v]);
         }
     }
     // u ja foi finalizado
