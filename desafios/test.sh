@@ -1,5 +1,10 @@
 x=19
-for a in 19 20 21 22 23 24 25 26 27 28 29 30;
+list = []
+
+for a in range(19, 31):
+    list.append(a)
+
+for a in list:
 do
     cd Aula$x
     let "x=$x+1"
