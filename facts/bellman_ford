@@ -1,0 +1,88 @@
+-> What does he do?
+    Computes the shortest-path weights \delta(s, v) from source vertex 
+s \in V to all vertices v \in V in |V| - 1 rounds or report a negative 
+weight cycle exists.
+
+-> Idea of algorithm
+    Since there is no neg-weight cycles, then a shortest simple path P
+in this graph has at most |V| - 1 edges and the first node of the path
+has the correct value. And then, since in each round (step) we relax all the 
+edges of the graph, at the each round one more vertex in the shortest
+path P will get the correct answer. So if |P| == K, then after at most 
+K rounds we will have the correct answer for the last vertex in the path.
+
+-> Invariant
+    At each round i, we have all the shortest simples path using at most
+i - 1 edges.
+
+-> Implementation: 
+
+bool bellman_ford() {
+    for (int i = 1; i < n; i++) 
+        d[i] = infty
+    d[0] = 0;
+
+    for (int i = 1; i <= n - 1; i++) {
+        for (int j = 0; j < edges; j++) {
+            int u = from[j];
+            int v = to[j];
+            if (d[u] != infty && d[v] > d[u] + w[u][v]) \\ Relax(u, v)
+                d[v] = d[u] = w[u][v];
+        }    
+    }
+
+    for (int i = 0; i < edges; i++) {
+        int u = from[i];
+        int v = to[i];
+        if (d[u] != infty && d[v] > d[u] + w[u][v]) {
+            //report a negative weight cycle exists
+            return false; 
+        }
+    }    
+
+    return true;
+} 
+
+* Observation: We can only consider to relax the edges from vertexes already
+visited. This is a problem to keep in mind when implementing, because
+the infinity is a constant at the code. If the graph is connected this is 
+not a issue, but if it is disconnected, then it can get wrong.
+
+-> Correctness:
+    If G = (V, E) has no negative-weights cycles then Bellman-Ford 
+terminates with d[v] = \delta(s, v) for all v \in V in |V| - 1 rounds.
+
+    [ Idea: we just need to prove that at some point d[v] = \delta(s, v) 
+holds.]
+
+Proof: 
+    Consider any v \in V.
+    By monotonicity of d[v] (always decrease) and d[v] >= \delta(s, v),
+*we only need to show that d[v] = \delta(s, v) at some time.
+    [ Idea: Look at v and the shortest path to v, and see what happens
+in the algorithm related to that path. ]
+    Let P = (v_0 = s, v_1, ..., v_k = v) be a shortest path from s to v 
+with the minimum number of edges (it guarantees a simple path, 
+otherwise if there is a zero weight cycle, this can appear in the path).
+    We know that a subpath of this path is also a shortest path, so
+\delta(s, v_i) = \delta(s, v_{i - 1}) + w(v_{i - 1}, v_i) (by optimal
+substructure).
+    Induction in i: 
+    Base: d[v_0] = 0 = \delta(s, v_0) (because we assume no neg cycles)
+    Passo: Assume that d[v_j] = \delta(s, v_j) after j rounds for j < i.
+    After i - 1 rounds, d[v_{i - 1}] = \delta(s, v_{i - 1}). 
+    At this round we are going to relax all the edges of the graph. In
+particular we are going to relax edge from v_{i - 1} to v_i. Then we 
+will get d[v_i] = \delta(s, v_{i - 1}) + w(v_{i - 1}, v_i) = \delta(s, v_i)
+
+-> Corollary: 
+    If the Bellman-Ford algorithm fails to converge after |V| - 1 rounds,
+then the graph must have a negative cycle. (Contrapositive of the proof, 
+so it is proven).
+     
+-> Otimization:
+    If in one round of the |V| - 1, any vertex is relaxed, then we can 
+stop the algorithm.
+
+-> Problems
+- Currency exchange (b.cpp) : Tum/CompetitiveProgramming/4
