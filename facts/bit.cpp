@@ -5,6 +5,10 @@ Importante:
     - To generalize this every index i in the BIT[] array stores the cumulative sum from the index i to i - (1<<r) + 1 (both inclusive), where r represents the last set bit in the index i
     - Let’s see how to construct this tree and then we will come back to querying the tree for prefix sums.
 
+Problemas:
+    - nwerc2015 g.cpp, ideia: contar inversões entre duas permutações, mas tem uma sacadinha pra ver que resposta
+está só em função disso.
+
 void update (int idx, int val) {
     for (int i = idx; i <= n; i += i&-i)
         bit[i] += val;
