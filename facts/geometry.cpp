@@ -1,5 +1,5 @@
 struct Point {
-    // Vpriables
+    // Variables
     double x, y;
 
     // Constructors

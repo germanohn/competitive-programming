@@ -29,12 +29,9 @@ void dfs (int u) {
     d[u] = low[u] = time++;
     for (int i = 0; i < adj[u].size (); i++) {
         int v = adj[u][i];
-        if (!seen[v]) {
+        if (!seen[v]) 
             dfs (v);
-            low[u] = min (low[u], low[v]);
-        } else { // agora não tem mais aresta pai, pois é direcionado.
-            low[u] = min (low[u], d[v]);
-        }
+        low[u] = min (low[u], low[v]); // no caso de v estar na stack, tanto faz se colocar d ou low no min.
     }
     // u ja foi finalizado
     if (low[u] >= d[u]) {
@@ -42,7 +39,7 @@ void dfs (int u) {
         do {
             a = st[--sn];
             comp[a] = u;
-            low[a] = INT_MAX;
+            low[a] = INT_MAX; // coloca isso, ou usa uma flag on_stack
         } while (a != u) 
     }
 }

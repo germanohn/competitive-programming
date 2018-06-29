@@ -1,0 +1,54 @@
+// Algorithm (source: wikipedia and my observations in quotes): 
+The first step in this algorithm is to find the point with the lowest y-coordinate.
+If the lowest y-coordinate exists in more than one point in the set, the point 
+with the lowest x-coordinate out of the candidates should be chosen. Call this 
+point P. This step takes O(n), where n is the number of points in question.
+
+Next, the set of points must be sorted in increasing order of the angle they and 
+the point P make with the x-axis ("this part is important, because way the points 
+are sorted justify why in the algorithm we use the condition <= to remove a point 
+from the stack instead of >=")
+
+Sorting in order of angle does not require computing the angle. It is possible 
+to use any function of the angle which is monotonic in the interval 
+between 0 and pi. The cosine is easily computed using the dot product, or 
+the slope of the line may be used. If numeric precision is at a 
+stake, the comparison function used by the sorting algorithm can use the sign of 
+the cross product to determine relative angles (that's the approach we use. Since 
+P[0] is the the point with smallest y, then sorting points relative to him, is the 
+same as sorting according to x-axis
+
+bool cmp(point a, point b) {
+    point OA = (a - P[0]);
+    point OB = (b - P[0]);
+    int cross = OA ^ OB;
+    if (cross > 0) return true;
+    if (cross < 0) return false;
+    return OA.dist2() < OB.dist2();
+}
+
+int min_element() {
+    int idx = 0;
+    for (int i = 1; i < n; i++) {
+        if (P[i].y < P[idx].y || 
+           (P[i].y == P[idx].y && P[i].x < P[idx].x))
+            idx = i;
+    }
+    return idx;
+}
+
+void convex_hull() {
+    int idx = min_element();
+    swap(P[0], P[idx]);
+    sort(P + 1, P + n, cmp);
+
+    sz = 0;
+    h[sz++] = 0;
+    h[sz++] = 1;
+    for (int i = 2; i < n; i++) {
+        while (sz >= 2 && cross(P[h[sz - 2]], P[h[sz - 1]], P[i]) <= 0)
+            sz--;  
+        h[sz++] = i;
+    }
+}
+

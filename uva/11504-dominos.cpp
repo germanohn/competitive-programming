@@ -21,12 +21,9 @@ void dfsStrong (int u) {
     d[u] = low[u] = tempo++;
     for (int i = 0; i < adj[u].size (); i++) {
         int v = adj[u][i];
-        if (!seen[v]) {
+        if (!seen[v])
             dfsStrong (v);
-            low[u] = min (low[u], low[v]);
-        } else {
-            low[u] = min (low[u], low[v]);
-        }
+        low[u] = min (low[u], low[v]);
     }
     if (low[u] >= d[u]) {
         int a;

@@ -1,0 +1,26 @@
+    Que grande ano! Os membros do maratonIME estão extasiados com o incrível time (shrug)
+que está prestes a nos representar: Sena (o Geômetra), Arthur cabelos dourados, Yan
+(não sei por que as pessoas erram). Mas como nem tudo são flores, há muitos contests
+para se preparar ainda, e o shrug quer estar afiado.
+
+Assim, em mais um simulado de contest na preparação para o mundial, nosso ilustre amigo
+Yan precisa da sua ajuda. Yan, cofundador do grupo maratonIME, é membro
+de um seleto grupo de grandes matemáticos capazes de, dentre outras habilidades,
+saber quando seu carro está no rodízio municipal.
+
+Porém, apesar de "altamente técnico", Yan encontra limitações em calcular
+o pênalti de seu time, afinal não se trata apenas de quantos problemas se acerta,
+mas como se acerta (ah vá). Então, dado um contest, você é capaz de ajudá-lo a obter esse
+dado tão relevante?
+
+Uma submissão pode resultar em AC (accepted) ou WA (wrong answer). No caso de AC (somente
+o primeiro para um dado problema), o tempo da submissão é incluído no pênalti.
+Já um WA adiciona 20 minutos ao pênalti, mas apenas se o AC do respectivo problema
+ocorrer depois dele. É garantido que para um mesmo problema ocorre apenas um WA. 
+
+Input: A primeira linha contém dois inteiros N (número de problemas no contest começando
+pela letra A), e K (quantidade de submissões feita pelo shrug). As próximas
+K linhas apresentam para cada submissão, a letra do problema (qualquer letra maiúscula
+do alfabeto), o tempo de submissão em minutos, e o veredito (AC ou WA).
+
+Output: Imprima um inteiro que representa o pênalti recebido pelo shrug

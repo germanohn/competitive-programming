@@ -1,0 +1,27 @@
+Input: 0 <= b <= a
+Output: (x, y) s.t. gcd(a, b) = xa + yb
+
+typedef pair<int, int> pii;
+
+pii gcd_extended(int a, int b) {
+    if (b == 0) return pii(1, 0);
+    if (b == 1) return pii(0, 1);
+    int k = (a - (a % b)) / b; // pode ser só k = a / b
+    pii p = gcd_extended(b, a % b);
+    return pii(p.second, p.first - k * p.second)
+}
+
+Ideia: 
+
+    Como gcd(b, a % b) = gcd(a, b), então: 
+
+        p.first * b + p.second * (a - k * b) = x * a + y * b
+
+    que é equivalente a: 
+
+        p.second * a + (p.first - k * b) * b = x * a + y * b
+
+    Logo:
+
+        x = p.second
+        y = p.first - k * p.second

@@ -1,0 +1,6 @@
+Problemas: 
+- C (Crossing) da seletiva individual 2018 Usp prova 4. 
+    Ideia:
+    tirar uma dimensão da query, por ter ordenado ela e 
+colocado na estrutura só elementos que obedecem o critério 
+da ordem
