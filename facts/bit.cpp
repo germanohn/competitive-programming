@@ -6,8 +6,19 @@ Importante:
     - Let’s see how to construct this tree and then we will come back to querying the tree for prefix sums.
 
 Problemas:
+
+COUNT INVERSIONS:
+    Ideia: Inversão é quando um par de números aparece em ordem contrária em relação a duas permutações. Supondo
+    que uma das permutações está em ordem crescente, então teremos uma inversão quando para um par de números m
+    e M que aparece assim na permutação ordenada (m, ..., M), aparece assim (M, ..., m) na segunda. Tendo a segunda 
+    como referência, a resposta é conseguida de duas maneiras:
+    1) contar a quantidade de m que aparecem depois de M: i - query(M) (se iterar da esquerda para a direita na bit)
+    2) contar a quantidade de M que aparecem antes de m: query(MAX - 1) - query(M) (se iterar da esquerda para a direita na bit
+    No primeiro problema faço 1), no segundo faço 2)
+
     - nwerc2015 g.cpp, ideia: contar inversões entre duas permutações, mas tem uma sacadinha pra ver que resposta
 está só em função disso.
+    - invcnt spoj: aplicação direta
 
 void update (int idx, int val) {
     for (int i = idx; i <= n; i += i&-i)
