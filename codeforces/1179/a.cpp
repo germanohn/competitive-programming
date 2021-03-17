@@ -30,19 +30,13 @@ int main() {
         dq.pop_front();
         query[i][1] = b;
 
-        if (a > b) {
-            dq.push_front(a);
-            dq.push_back(b);
-        } else {
-            dq.push_front(b);
-            dq.push_back(a);
-        }
+        dq.push_front(max(a, b));
+        dq.push_back(min(a, b));
     }
 
     while (!dq.empty()) {
-        int f = dq.front();
+        v.push_back(dq.front());
         dq.pop_front();
-        v.push_back(f);
     }
 
     while (q--) {
@@ -50,10 +44,10 @@ int main() {
         scanf(" %lld", &m);
         m--;
 
-        if (m < ll(n - 1)) {
+        if (m < n - 1) {
             printf("%d %d\n", query[m][0], query[m][1]);
         } else {
-            m %= ll(n - 1);
+            m %= n - 1;
             printf("%d %d\n", v[0], v[m + 1]);
         }
     }

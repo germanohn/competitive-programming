@@ -1,10 +1,17 @@
+/*
 Importante:
-    - Vetor de bit é indexado de 1 a n (número de bits do maior valor (geralmente tamanho do vetor em questao)
+    - Vetor de bit é indexado de 1 a n (n é o número de bits do maior valor 
+    (geralmente tamanho do vetor em questao)
     - update é até o n
     - query ate maior que 0
-    - To generalize this every index i in the BIT[] array stores the cumulative sum from the index i to i - (1<<r) + 1 (both inclusive), where r represents the last set bit in the index i
-    - Let’s see how to construct this tree and then we will come back to querying the tree for prefix sums.
+    - To generalize this every index i in the BIT[] array stores the cumulative 
+    sum from the index i to i - (1<<r) + 1 (both inclusive), where r represents 
+    the last set bit in the index i
+    - Let’s see how to construct this tree and then we will come back to querying 
+    the tree for prefix sums.
+*/
 
+/*
 Problemas:
 
 COUNT INVERSIONS:
@@ -19,6 +26,8 @@ COUNT INVERSIONS:
     - nwerc2015 g.cpp, ideia: contar inversões entre duas permutações, mas tem uma sacadinha pra ver que resposta
 está só em função disso.
     - invcnt spoj: aplicação direta
+    - f educational 65 cf: duas bits
+*/
 
 void update (int idx, int val) {
     for (int i = idx; i <= n; i += i&-i)
